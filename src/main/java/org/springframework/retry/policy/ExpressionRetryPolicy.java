@@ -43,6 +43,8 @@ import org.springframework.util.Assert;
 @SuppressWarnings("serial")
 public class ExpressionRetryPolicy extends SimpleRetryPolicy implements BeanFactoryAware {
 
+	private static final long serialVersionUID = 1;
+
 	private static final Log logger = LogFactory.getLog(ExpressionRetryPolicy.class);
 
 	private static final TemplateParserContext PARSER_CONTEXT = new TemplateParserContext();

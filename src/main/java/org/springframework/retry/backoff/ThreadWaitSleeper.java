@@ -26,6 +26,8 @@ package org.springframework.retry.backoff;
 @SuppressWarnings("serial")
 public class ThreadWaitSleeper implements Sleeper {
 
+	private static final long serialVersionUID = 1;
+
 	@Override
 	public void sleep(long backOffPeriod) throws InterruptedException {
 		Thread.sleep(backOffPeriod);

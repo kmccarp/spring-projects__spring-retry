@@ -170,8 +170,7 @@ public class CircuitBreakerRetryTemplateTests {
 			if (!this.status.hasAttribute("attempts")) {
 				this.status.setAttribute("attempts", 0);
 			}
-			int attempts = (Integer) this.status.getAttribute("attempts");
-			return attempts;
+			return (Integer) this.status.getAttribute("attempts");
 		}
 
 		public void setAttemptsBeforeSuccess(int attemptsBeforeSuccess) {
@@ -185,6 +184,8 @@ public class CircuitBreakerRetryTemplateTests {
 	}
 
 	protected class MockNeverRetryPolicy extends NeverRetryPolicy {
+
+		private static final long serialVersionUID = 1;
 
 		public boolean canRetry(RetryContext context) {
 			return false;
