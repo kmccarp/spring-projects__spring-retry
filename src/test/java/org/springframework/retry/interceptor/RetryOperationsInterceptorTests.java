@@ -201,7 +201,7 @@ public class RetryOperationsInterceptorTests {
 		RetryTemplate template = new RetryTemplate();
 		template.setRetryPolicy(new NeverRetryPolicy());
 		this.interceptor.setRetryOperations(template);
-		assertThatExceptionOfType(Exception.class).isThrownBy(() -> service.service());
+		assertThatExceptionOfType(Exception.class).isThrownBy(service::service);
 		assertThat(count).isEqualTo(1);
 	}
 
@@ -259,7 +259,7 @@ public class RetryOperationsInterceptorTests {
 
 	public static class ServiceImpl implements Service {
 
-		private boolean enteredTransaction = false;
+		private boolean enteredTransaction;
 
 		@Override
 		public void service() throws Exception {

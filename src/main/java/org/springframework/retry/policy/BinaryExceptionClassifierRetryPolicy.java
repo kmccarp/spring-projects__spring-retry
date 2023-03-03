@@ -31,6 +31,8 @@ import org.springframework.retry.context.RetryContextSupport;
 @SuppressWarnings("serial")
 public class BinaryExceptionClassifierRetryPolicy implements RetryPolicy {
 
+	private static final long serialVersionUID = 1;
+
 	private final BinaryExceptionClassifier exceptionClassifier;
 
 	public BinaryExceptionClassifierRetryPolicy(BinaryExceptionClassifier exceptionClassifier) {
@@ -53,7 +55,7 @@ public class BinaryExceptionClassifierRetryPolicy implements RetryPolicy {
 
 	@Override
 	public void registerThrowable(RetryContext context, Throwable throwable) {
-		RetryContextSupport simpleContext = ((RetryContextSupport) context);
+		RetryContextSupport simpleContext = (RetryContextSupport) context;
 		simpleContext.registerThrowable(throwable);
 	}
 

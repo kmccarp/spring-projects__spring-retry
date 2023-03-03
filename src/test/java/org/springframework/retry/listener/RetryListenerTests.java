@@ -43,7 +43,7 @@ public class RetryListenerTests {
 
 	RetryTemplate template = new RetryTemplate();
 
-	int count = 0;
+	int count;
 
 	List<String> list = new ArrayList<>();
 
@@ -172,8 +172,9 @@ public class RetryListenerTests {
 			}
 		});
 		template.execute(context -> {
-			if (count++ < 1)
+			if (count++ < 1) {
 				throw new RuntimeException("Retry!");
+			}
 			return null;
 		});
 		assertThat(count).isEqualTo(2);

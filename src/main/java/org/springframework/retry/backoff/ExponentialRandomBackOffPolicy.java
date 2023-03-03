@@ -63,6 +63,8 @@ public class ExponentialRandomBackOffPolicy extends ExponentialBackOffPolicy {
 
 	static class ExponentialRandomBackOffContext extends ExponentialBackOffPolicy.ExponentialBackOffContext {
 
+		private static final long serialVersionUID = 1;
+
 		private final Random r = new Random();
 
 		public ExponentialRandomBackOffContext(long expSeed, double multiplier, long maxInterval,

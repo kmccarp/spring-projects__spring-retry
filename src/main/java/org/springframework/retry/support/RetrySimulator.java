@@ -112,6 +112,8 @@ public class RetrySimulator {
 	@SuppressWarnings("serial")
 	static class StealingSleeper implements Sleeper {
 
+		private static final long serialVersionUID = 1;
+
 		private final List<Long> sleeps = new ArrayList<>();
 
 		public void sleep(long backOffPeriod) throws InterruptedException {
