@@ -196,7 +196,7 @@ public abstract class RetryInterceptorBuilder<T extends MethodInterceptor> {
 	private RetryInterceptorBuilder() {
 	}
 
-	public static class StatefulRetryInterceptorBuilder
+	public static final class StatefulRetryInterceptorBuilder
 			extends RetryInterceptorBuilder<StatefulRetryOperationsInterceptor> {
 
 		private final StatefulRetryOperationsInterceptor interceptor = new StatefulRetryOperationsInterceptor();
@@ -308,7 +308,7 @@ public abstract class RetryInterceptorBuilder<T extends MethodInterceptor> {
 
 	}
 
-	public static class CircuitBreakerInterceptorBuilder
+	public static final class CircuitBreakerInterceptorBuilder
 			extends RetryInterceptorBuilder<StatefulRetryOperationsInterceptor> {
 
 		private final StatefulRetryOperationsInterceptor interceptor = new StatefulRetryOperationsInterceptor();
@@ -370,7 +370,7 @@ public abstract class RetryInterceptorBuilder<T extends MethodInterceptor> {
 
 	}
 
-	public static class StatelessRetryInterceptorBuilder extends RetryInterceptorBuilder<RetryOperationsInterceptor> {
+	public static final class StatelessRetryInterceptorBuilder extends RetryInterceptorBuilder<RetryOperationsInterceptor> {
 
 		private final RetryOperationsInterceptor interceptor = new RetryOperationsInterceptor();
 
