@@ -37,6 +37,8 @@ import org.springframework.util.Assert;
 @SuppressWarnings("serial")
 public class ExceptionClassifierRetryPolicy implements RetryPolicy {
 
+	private static final long serialVersionUID = 1;
+
 	private Classifier<Throwable, RetryPolicy> exceptionClassifier = new ClassifierSupport<>(new NeverRetryPolicy());
 
 	/**
@@ -103,7 +105,9 @@ public class ExceptionClassifierRetryPolicy implements RetryPolicy {
 
 	private static class ExceptionClassifierRetryContext extends RetryContextSupport implements RetryPolicy {
 
-		final private Classifier<Throwable, RetryPolicy> exceptionClassifier;
+		private static final long serialVersionUID = 1;
+
+		private final Classifier<Throwable, RetryPolicy> exceptionClassifier;
 
 		// Dynamic: depends on the latest exception:
 		private RetryPolicy policy;
@@ -111,7 +115,7 @@ public class ExceptionClassifierRetryPolicy implements RetryPolicy {
 		// Dynamic: depends on the policy:
 		private RetryContext context;
 
-		final private Map<RetryPolicy, RetryContext> contexts = new HashMap<>();
+		private final Map<RetryPolicy, RetryContext> contexts = new HashMap<>();
 
 		public ExceptionClassifierRetryContext(RetryContext parent,
 				Classifier<Throwable, RetryPolicy> exceptionClassifier) {

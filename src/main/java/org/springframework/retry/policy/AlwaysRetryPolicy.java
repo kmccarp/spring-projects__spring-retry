@@ -29,6 +29,8 @@ import org.springframework.retry.RetryPolicy;
 @SuppressWarnings("serial")
 public class AlwaysRetryPolicy extends NeverRetryPolicy {
 
+	private static final long serialVersionUID = 1;
+
 	/**
 	 * Always returns true.
 	 *
