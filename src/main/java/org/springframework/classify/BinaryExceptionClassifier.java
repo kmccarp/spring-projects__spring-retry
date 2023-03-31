@@ -34,6 +34,8 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class BinaryExceptionClassifier extends SubclassClassifier<Throwable, Boolean> {
 
+	private static final long serialVersionUID = 1;
+
 	private boolean traverseCauses;
 
 	public static BinaryExceptionClassifierBuilder builder() {
