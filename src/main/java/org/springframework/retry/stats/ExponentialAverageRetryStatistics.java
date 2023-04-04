@@ -23,6 +23,8 @@ package org.springframework.retry.stats;
 @SuppressWarnings("serial")
 public class ExponentialAverageRetryStatistics extends DefaultRetryStatistics {
 
+	private static final long serialVersionUID = 1;
+
 	private long window = 15000;
 
 	private ExponentialAverage started;

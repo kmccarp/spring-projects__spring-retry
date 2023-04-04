@@ -26,9 +26,11 @@ import org.springframework.retry.RetryPolicy;
 @SuppressWarnings("serial")
 public class RetryContextSupport extends AttributeAccessorSupport implements RetryContext {
 
+	private static final long serialVersionUID = 1;
+
 	private final RetryContext parent;
 
-	private volatile boolean terminate = false;
+	private volatile boolean terminate;
 
 	private volatile int count;
 
@@ -73,8 +75,9 @@ public class RetryContextSupport extends AttributeAccessorSupport implements Ret
 	 */
 	public void registerThrowable(Throwable throwable) {
 		this.lastException = throwable;
-		if (throwable != null)
+		if (throwable != null) {
 			count++;
+		}
 	}
 
 	@Override

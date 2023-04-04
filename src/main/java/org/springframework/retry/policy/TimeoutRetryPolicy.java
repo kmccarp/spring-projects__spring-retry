@@ -30,6 +30,8 @@ import org.springframework.retry.context.RetryContextSupport;
 @SuppressWarnings("serial")
 public class TimeoutRetryPolicy implements RetryPolicy {
 
+	private static final long serialVersionUID = 1;
+
 	/**
 	 * Default value for timeout (milliseconds).
 	 */
@@ -76,6 +78,8 @@ public class TimeoutRetryPolicy implements RetryPolicy {
 	}
 
 	private static class TimeoutRetryContext extends RetryContextSupport {
+
+		private static final long serialVersionUID = 1;
 
 		private final long timeout;
 
