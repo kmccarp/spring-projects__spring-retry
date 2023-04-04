@@ -28,6 +28,8 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class DummySleeper implements Sleeper {
 
+	private static final long serialVersionUID = 1;
+
 	private final List<Long> backOffs = new ArrayList<>();
 
 	/**

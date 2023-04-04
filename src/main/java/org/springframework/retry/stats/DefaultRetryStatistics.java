@@ -29,6 +29,8 @@ import org.springframework.retry.RetryStatistics;
 public class DefaultRetryStatistics extends AttributeAccessorSupport
 		implements RetryStatistics, MutableRetryStatistics {
 
+	private static final long serialVersionUID = 1;
+
 	private String name;
 
 	private final AtomicInteger startedCount = new AtomicInteger();
