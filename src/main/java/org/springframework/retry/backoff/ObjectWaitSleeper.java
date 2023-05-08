@@ -26,6 +26,8 @@ package org.springframework.retry.backoff;
 @Deprecated
 public class ObjectWaitSleeper implements Sleeper {
 
+	private static final long serialVersionUID = 1;
+
 	/*
 	 * (non-Javadoc)
 	 *

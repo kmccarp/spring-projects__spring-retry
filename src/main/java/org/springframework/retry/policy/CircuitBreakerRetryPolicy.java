@@ -33,6 +33,8 @@ import org.springframework.retry.context.RetryContextSupport;
 @SuppressWarnings("serial")
 public class CircuitBreakerRetryPolicy implements RetryPolicy {
 
+	private static final long serialVersionUID = 1;
+
 	public static final String CIRCUIT_OPEN = "circuit.open";
 
 	public static final String CIRCUIT_SHORT_COUNT = "circuit.shortCount";
@@ -138,6 +140,8 @@ public class CircuitBreakerRetryPolicy implements RetryPolicy {
 	}
 
 	static class CircuitBreakerRetryContext extends RetryContextSupport {
+
+		private static final long serialVersionUID = 1;
 
 		private volatile RetryContext context;
 
