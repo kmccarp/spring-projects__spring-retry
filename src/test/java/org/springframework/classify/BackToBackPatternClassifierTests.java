@@ -80,6 +80,8 @@ public class BackToBackPatternClassifierTests {
 	@SuppressWarnings("serial")
 	private class RouterDelegate implements org.springframework.classify.Classifier<Object, String> {
 
+		private static final long serialVersionUID = 1;
+
 		@Override
 		public String classify(Object classifiable) {
 			return "bucket";

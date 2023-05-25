@@ -30,6 +30,8 @@ import org.springframework.retry.context.RetryContextSupport;
 @SuppressWarnings("serial")
 public class NeverRetryPolicy implements RetryPolicy {
 
+	private static final long serialVersionUID = 1;
+
 	/**
 	 * Returns false after the first exception. So there is always one try, and then the
 	 * retry is prevented.
@@ -81,7 +83,9 @@ public class NeverRetryPolicy implements RetryPolicy {
 	 */
 	private static class NeverRetryContext extends RetryContextSupport {
 
-		private boolean finished = false;
+		private static final long serialVersionUID = 1;
+
+		private boolean finished;
 
 		public NeverRetryContext(RetryContext parent) {
 			super(parent);
