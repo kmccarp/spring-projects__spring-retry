@@ -41,7 +41,7 @@ public class ThreadWaitSleeperTests {
 		long lower = desired - variance;
 		long upper = desired + 2 * variance;
 		assertThat(lower).describedAs("Expected value to be between '%d' and '%d' but was '%d'", lower, upper, actual)
-			.isLessThanOrEqualTo(actual);
+	.isLessThanOrEqualTo(actual);
 	}
 
 }

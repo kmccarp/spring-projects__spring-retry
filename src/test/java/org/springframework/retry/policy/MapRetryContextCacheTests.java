@@ -40,7 +40,7 @@ public class MapRetryContextCacheTests {
 		cache.setCapacity(1);
 		cache.put("foo", context);
 		assertThatExceptionOfType(RetryCacheCapacityExceededException.class)
-			.isThrownBy(() -> cache.put("foo", context));
+	.isThrownBy(() -> cache.put("foo", context));
 	}
 
 	@Test

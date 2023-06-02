@@ -70,13 +70,13 @@ public class CircuitBreakerTests {
 		assertThat(delegates).hasSize(1);
 		Map<?, ?> methodMap = (Map<?, ?>) delegates.values().iterator().next();
 		MethodInterceptor interceptor = (MethodInterceptor) methodMap
-			.get(Service.class.getDeclaredMethod("expressionService"));
+	.get(Service.class.getDeclaredMethod("expressionService"));
 		DirectFieldAccessor accessor = new DirectFieldAccessor(interceptor);
 		assertThat(accessor.getPropertyValue("retryOperations.retryPolicy.delegate.maxAttempts")).isEqualTo(8);
 		assertThat(accessor.getPropertyValue("retryOperations.retryPolicy.openTimeout")).isEqualTo(19000L);
 		assertThat(accessor.getPropertyValue("retryOperations.retryPolicy.resetTimeout")).isEqualTo(20000L);
 		assertThat(accessor.getPropertyValue("retryOperations.retryPolicy.delegate.expression.expression"))
-			.isEqualTo("#root instanceof RuntimeExpression");
+	.isEqualTo("#root instanceof RuntimeExpression");
 
 		interceptor = (MethodInterceptor) methodMap.get(Service.class.getDeclaredMethod("expressionService2"));
 		accessor = new DirectFieldAccessor(interceptor);
@@ -99,13 +99,13 @@ public class CircuitBreakerTests {
 		assertThat(delegates).hasSize(1);
 		Map<?, ?> methodMap = (Map<?, ?>) delegates.values().iterator().next();
 		MethodInterceptor interceptor = (MethodInterceptor) methodMap
-			.get(Service.class.getDeclaredMethod("expressionService3"));
+	.get(Service.class.getDeclaredMethod("expressionService3"));
 		Supplier<?> maxAttempts = TestUtils.getPropertyValue(interceptor,
-				"retryOperations.retryPolicy.delegate.maxAttemptsSupplier", Supplier.class);
+	"retryOperations.retryPolicy.delegate.maxAttemptsSupplier", Supplier.class);
 		assertThat(maxAttempts).isNotNull();
 		assertThat(maxAttempts.get()).isEqualTo(10);
 		CircuitBreakerRetryPolicy policy = TestUtils.getPropertyValue(interceptor, "retryOperations.retryPolicy",
-				CircuitBreakerRetryPolicy.class);
+	CircuitBreakerRetryPolicy.class);
 		Supplier openTO = TestUtils.getPropertyValue(policy, "openTimeoutSupplier", Supplier.class);
 		assertThat(openTO).isNotNull();
 		assertThat(openTO.get()).isEqualTo(10000L);
@@ -177,21 +177,21 @@ public class CircuitBreakerTests {
 
 		@Override
 		@CircuitBreaker(maxAttemptsExpression = "#{2 * ${foo:4}}", openTimeoutExpression = "#{${bar:19}000}",
-				resetTimeoutExpression = "#{${baz:20}000}", exceptionExpression = "#root instanceof RuntimeExpression")
+	resetTimeoutExpression = "#{${baz:20}000}", exceptionExpression = "#root instanceof RuntimeExpression")
 		public void expressionService() {
 			this.count++;
 		}
 
 		@Override
 		@CircuitBreaker(maxAttemptsExpression = "#{@configs.maxAttempts}",
-				openTimeoutExpression = "#{@configs.openTimeout}", resetTimeoutExpression = "#{@configs.resetTimeout}")
+	openTimeoutExpression = "#{@configs.openTimeout}", resetTimeoutExpression = "#{@configs.resetTimeout}")
 		public void expressionService2() {
 			this.count++;
 		}
 
 		@Override
 		@CircuitBreaker(maxAttemptsExpression = "@configs.maxAttempts", openTimeoutExpression = "@configs.openTimeout",
-				resetTimeoutExpression = "@configs.resetTimeout")
+	resetTimeoutExpression = "@configs.resetTimeout")
 		public void expressionService3() {
 			this.context = RetrySynchronizationManager.getContext();
 			this.count++;

@@ -41,7 +41,7 @@ public class ExceptionClassifierRetryPolicyTests {
 	@Test
 	public void testTrivialPolicies() {
 		policy.setPolicyMap(Collections.<Class<? extends Throwable>, RetryPolicy>singletonMap(Exception.class,
-				new MockRetryPolicySupport()));
+	new MockRetryPolicySupport()));
 		RetryContext context = policy.open(null);
 		assertThat(context).isNotNull();
 		assertTrue(policy.canRetry(context));
@@ -57,7 +57,7 @@ public class ExceptionClassifierRetryPolicyTests {
 	@Test
 	public void testNullContext() {
 		policy.setPolicyMap(Collections.<Class<? extends Throwable>, RetryPolicy>singletonMap(Exception.class,
-				new NeverRetryPolicy()));
+	new NeverRetryPolicy()));
 
 		RetryContext context = policy.open(null);
 		assertThat(context).isNotNull();

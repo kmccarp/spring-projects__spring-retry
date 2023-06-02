@@ -98,7 +98,7 @@ public class EnableRetryTests {
 	@Test
 	public void proxyTargetClass() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				TestProxyConfiguration.class);
+	TestProxyConfiguration.class);
 		Service service = context.getBean(Service.class);
 		assertThat(AopUtils.isCglibProxy(service)).isTrue();
 		RecoverableService recoverable = context.getBean(RecoverableService.class);
@@ -110,7 +110,7 @@ public class EnableRetryTests {
 	@Test
 	public void order() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				TestOrderConfiguration.class);
+	TestOrderConfiguration.class);
 		RetryConfiguration config = context.getBean(RetryConfiguration.class);
 		assertThat(config.getOrder()).isEqualTo(1);
 		context.close();
@@ -240,19 +240,19 @@ public class EnableRetryTests {
 		assertThat(service.getCount()).isEqualTo(9);
 		RetryConfiguration config = context.getBean(RetryConfiguration.class);
 		AnnotationAwareRetryOperationsInterceptor advice = (AnnotationAwareRetryOperationsInterceptor) new DirectFieldAccessor(
-				config)
-			.getPropertyValue("advice");
+	config)
+	.getPropertyValue("advice");
 		@SuppressWarnings("unchecked")
 		Map<Object, Map<Method, MethodInterceptor>> delegates = (Map<Object, Map<Method, MethodInterceptor>>) new DirectFieldAccessor(
-				advice)
-			.getPropertyValue("delegates");
+	advice)
+	.getPropertyValue("delegates");
 		MethodInterceptor interceptor = delegates.get(target(service))
-			.get(ExpressionService.class.getDeclaredMethod("service3"));
+	.get(ExpressionService.class.getDeclaredMethod("service3"));
 		RetryTemplate template = (RetryTemplate) new DirectFieldAccessor(interceptor)
-			.getPropertyValue("retryOperations");
+	.getPropertyValue("retryOperations");
 		DirectFieldAccessor templateAccessor = new DirectFieldAccessor(template);
 		ExponentialBackOffPolicy backOff = (ExponentialBackOffPolicy) templateAccessor
-			.getPropertyValue("backOffPolicy");
+	.getPropertyValue("backOffPolicy");
 		assertThat(backOff.getInitialInterval()).isEqualTo(1);
 		assertThat(backOff.getMaxInterval()).isEqualTo(5);
 		assertThat(backOff.getMultiplier()).isEqualTo(1.1);
@@ -283,19 +283,19 @@ public class EnableRetryTests {
 
 		RetryConfiguration config = context.getBean(RetryConfiguration.class);
 		AnnotationAwareRetryOperationsInterceptor advice = (AnnotationAwareRetryOperationsInterceptor) new DirectFieldAccessor(
-				config)
-			.getPropertyValue("advice");
+	config)
+	.getPropertyValue("advice");
 		@SuppressWarnings("unchecked")
 		Map<Object, Map<Method, MethodInterceptor>> delegates = (Map<Object, Map<Method, MethodInterceptor>>) new DirectFieldAccessor(
-				advice)
-			.getPropertyValue("delegates");
+	advice)
+	.getPropertyValue("delegates");
 		MethodInterceptor interceptor = delegates.get(target(service))
-			.get(ExpressionService.class.getDeclaredMethod("service6"));
+	.get(ExpressionService.class.getDeclaredMethod("service6"));
 		RetryTemplate template = (RetryTemplate) new DirectFieldAccessor(interceptor)
-			.getPropertyValue("retryOperations");
+	.getPropertyValue("retryOperations");
 		DirectFieldAccessor templateAccessor = new DirectFieldAccessor(template);
 		ExponentialBackOffPolicy backOff = (ExponentialBackOffPolicy) templateAccessor
-			.getPropertyValue("backOffPolicy");
+	.getPropertyValue("backOffPolicy");
 		assertThat(backOff.getInitialInterval()).isEqualTo(1000);
 		assertThat(backOff.getMaxInterval()).isEqualTo(2000);
 		assertThat(backOff.getMultiplier()).isEqualTo(1.2);
@@ -619,7 +619,7 @@ public class EnableRetryTests {
 		boolean otherAdviceCalled;
 
 		@Retryable(retryFor = RuntimeException.class, noRetryFor = IllegalStateException.class,
-				notRecoverable = { IllegalArgumentException.class, IllegalStateException.class })
+	notRecoverable = {IllegalArgumentException.class, IllegalStateException.class})
 		public void service() {
 			if (this.count++ >= 3 && count < 7) {
 				throw new IllegalArgumentException("Planned");
@@ -764,8 +764,8 @@ public class EnableRetryTests {
 		}
 
 		@Retryable(exceptionExpression = "@exceptionChecker.${retryMethod}(#root)",
-				maxAttemptsExpression = "@integerFiveBean", backoff = @Backoff(delayExpression = "${one}",
-						maxDelayExpression = "@integerFiveBean", multiplierExpression = "${onePointOne}"))
+	maxAttemptsExpression = "@integerFiveBean", backoff = @Backoff(delayExpression = "${one}",
+	maxDelayExpression = "@integerFiveBean", multiplierExpression = "${onePointOne}"))
 		public void service3() {
 			if (this.count++ < 8) {
 				throw new RuntimeException();
@@ -773,7 +773,7 @@ public class EnableRetryTests {
 		}
 
 		@Retryable(exceptionExpression = "message.contains('this can be retried')",
-				backoff = @Backoff(delayExpression = "5000"))
+	backoff = @Backoff(delayExpression = "5000"))
 		public void service4() {
 			if (this.count++ < 10) {
 				throw new RuntimeException("this can be retried");
@@ -788,8 +788,8 @@ public class EnableRetryTests {
 		}
 
 		@Retryable(maxAttemptsExpression = "@runtimeConfigs.maxAttempts",
-				backoff = @Backoff(delayExpression = "@runtimeConfigs.initial",
-						maxDelayExpression = "@runtimeConfigs.max", multiplierExpression = "@runtimeConfigs.mult"))
+	backoff = @Backoff(delayExpression = "@runtimeConfigs.initial",
+maxDelayExpression = "@runtimeConfigs.max", multiplierExpression = "@runtimeConfigs.mult"))
 		public void service6() {
 			if (this.count++ < 2) {
 				throw new RuntimeException("retry");

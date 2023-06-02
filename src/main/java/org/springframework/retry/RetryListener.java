@@ -53,7 +53,7 @@ public interface RetryListener {
 	 * @param <T> the return value
 	 */
 	default <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback,
-			Throwable throwable) {
+Throwable throwable) {
 	}
 
 	/**
@@ -78,7 +78,7 @@ public interface RetryListener {
 	 * @param <E> the exception to throw
 	 */
 	default <T, E extends Throwable> void onError(RetryContext context, RetryCallback<T, E> callback,
-			Throwable throwable) {
+Throwable throwable) {
 	}
 
 }

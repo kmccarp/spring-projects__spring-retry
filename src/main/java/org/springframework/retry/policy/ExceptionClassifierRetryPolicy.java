@@ -114,7 +114,7 @@ public class ExceptionClassifierRetryPolicy implements RetryPolicy {
 		final private Map<RetryPolicy, RetryContext> contexts = new HashMap<>();
 
 		public ExceptionClassifierRetryContext(RetryContext parent,
-				Classifier<Throwable, RetryPolicy> exceptionClassifier) {
+	Classifier<Throwable, RetryPolicy> exceptionClassifier) {
 			super(parent);
 			this.exceptionClassifier = exceptionClassifier;
 		}

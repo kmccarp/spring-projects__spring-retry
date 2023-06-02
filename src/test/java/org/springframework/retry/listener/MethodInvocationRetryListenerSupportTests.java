@@ -42,7 +42,7 @@ public class MethodInvocationRetryListenerSupportTests {
 		MethodInvocationRetryListenerSupport support = new MethodInvocationRetryListenerSupport() {
 			@Override
 			protected <T, E extends Throwable> void doClose(RetryContext context,
-					MethodInvocationRetryCallback<T, E> callback, Throwable throwable) {
+		MethodInvocationRetryCallback<T, E> callback, Throwable throwable) {
 				callsOnDoCloseMethod.incrementAndGet();
 			}
 		};
@@ -58,7 +58,7 @@ public class MethodInvocationRetryListenerSupportTests {
 		MethodInvocationRetryListenerSupport support = new MethodInvocationRetryListenerSupport() {
 			@Override
 			protected <T, E extends Throwable> void doClose(RetryContext context,
-					MethodInvocationRetryCallback<T, E> callback, Throwable throwable) {
+		MethodInvocationRetryCallback<T, E> callback, Throwable throwable) {
 				callsOnDoCloseMethod.incrementAndGet();
 			}
 		};
@@ -81,7 +81,7 @@ public class MethodInvocationRetryListenerSupportTests {
 		MethodInvocationRetryListenerSupport support = new MethodInvocationRetryListenerSupport() {
 			@Override
 			protected <T, E extends Throwable> void doOnError(RetryContext context,
-					MethodInvocationRetryCallback<T, E> callback, Throwable throwable) {
+		MethodInvocationRetryCallback<T, E> callback, Throwable throwable) {
 				callsOnDoOnErrorMethod.incrementAndGet();
 			}
 		};
@@ -103,7 +103,7 @@ public class MethodInvocationRetryListenerSupportTests {
 		MethodInvocationRetryListenerSupport support = new MethodInvocationRetryListenerSupport() {
 			@Override
 			protected <T, E extends Throwable> boolean doOpen(RetryContext context,
-					MethodInvocationRetryCallback<T, E> callback) {
+		MethodInvocationRetryCallback<T, E> callback) {
 				callsOnDoOpenMethod.incrementAndGet();
 				return true;
 			}

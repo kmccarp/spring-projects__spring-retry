@@ -76,7 +76,7 @@ public class FatalExceptionRetryPolicyTests {
 
 		Object result = null;
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> retryTemplate.execute(callback, recoveryCallback, new DefaultRetryState("foo")));
+	.isThrownBy(() -> retryTemplate.execute(callback, recoveryCallback, new DefaultRetryState("foo")));
 		result = retryTemplate.execute(callback, recoveryCallback, new DefaultRetryState("foo"));
 		// Callback is called once: the recovery path should also be called
 		assertThat(callback.attempts).isEqualTo(1);

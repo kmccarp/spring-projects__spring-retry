@@ -47,7 +47,7 @@ public class EnableRetryWithListenersTests {
 	@Test
 	public void overrideListener() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				TestConfigurationMultipleListeners.class);
+	TestConfigurationMultipleListeners.class);
 		ServiceWithOverriddenListener service = context.getBean(ServiceWithOverriddenListener.class);
 		service.service();
 		assertThat(context.getBean(TestConfigurationMultipleListeners.class).count1).isEqualTo(1);
@@ -71,7 +71,7 @@ public class EnableRetryWithListenersTests {
 			return new RetryListener() {
 				@Override
 				public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback,
-						Throwable throwable) {
+			Throwable throwable) {
 					count++;
 				}
 			};
@@ -97,7 +97,7 @@ public class EnableRetryWithListenersTests {
 			return new RetryListener() {
 				@Override
 				public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback,
-						Throwable throwable) {
+			Throwable throwable) {
 					count1++;
 				}
 			};
@@ -108,7 +108,7 @@ public class EnableRetryWithListenersTests {
 			return new RetryListener() {
 				@Override
 				public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback,
-						Throwable throwable) {
+			Throwable throwable) {
 					count2++;
 				}
 			};

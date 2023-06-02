@@ -39,7 +39,7 @@ public class MethodInvocationRetryListenerSupport implements RetryListener {
 
 	@Override
 	public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback,
-			Throwable throwable) {
+Throwable throwable) {
 		if (callback instanceof MethodInvocationRetryCallback) {
 			MethodInvocationRetryCallback<T, E> methodInvocationRetryCallback = (MethodInvocationRetryCallback<T, E>) callback;
 			doClose(context, methodInvocationRetryCallback, throwable);
@@ -56,7 +56,7 @@ public class MethodInvocationRetryListenerSupport implements RetryListener {
 
 	@Override
 	public <T, E extends Throwable> void onError(RetryContext context, RetryCallback<T, E> callback,
-			Throwable throwable) {
+Throwable throwable) {
 		if (callback instanceof MethodInvocationRetryCallback) {
 			MethodInvocationRetryCallback<T, E> methodInvocationRetryCallback = (MethodInvocationRetryCallback<T, E>) callback;
 			doOnError(context, methodInvocationRetryCallback, throwable);
@@ -84,7 +84,7 @@ public class MethodInvocationRetryListenerSupport implements RetryListener {
 	 * @param <T> the return value
 	 */
 	protected <T, E extends Throwable> void doClose(RetryContext context, MethodInvocationRetryCallback<T, E> callback,
-			Throwable throwable) {
+Throwable throwable) {
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class MethodInvocationRetryListenerSupport implements RetryListener {
 	 * @since 2.0
 	 */
 	protected <T, E extends Throwable> void doOnSuccess(RetryContext context,
-			MethodInvocationRetryCallback<T, E> callback, T result) {
+MethodInvocationRetryCallback<T, E> callback, T result) {
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class MethodInvocationRetryListenerSupport implements RetryListener {
 	 * @param <E> the exception to throw
 	 */
 	protected <T, E extends Throwable> void doOnError(RetryContext context,
-			MethodInvocationRetryCallback<T, E> callback, Throwable throwable) {
+MethodInvocationRetryCallback<T, E> callback, Throwable throwable) {
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class MethodInvocationRetryListenerSupport implements RetryListener {
 	 * @return true if the retry should proceed.
 	 */
 	protected <T, E extends Throwable> boolean doOpen(RetryContext context,
-			MethodInvocationRetryCallback<T, E> callback) {
+MethodInvocationRetryCallback<T, E> callback) {
 		return true;
 	}
 

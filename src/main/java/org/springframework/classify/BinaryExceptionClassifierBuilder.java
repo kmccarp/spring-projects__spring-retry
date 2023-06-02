@@ -78,19 +78,19 @@ public class BinaryExceptionClassifierBuilder {
 
 	public BinaryExceptionClassifier build() {
 		Assert.isTrue(!exceptionClasses.isEmpty(),
-				"Attempt to build classifier with empty rules. To build always true, or always false "
-						+ "instance, please use explicit rule for Throwable");
+	"Attempt to build classifier with empty rules. To build always true, or always false "
++ "instance, please use explicit rule for Throwable");
 		BinaryExceptionClassifier classifier = new BinaryExceptionClassifier(exceptionClasses, isWhiteList // using
-																											// white
-																											// list
-																											// means
-																											// classifying
-																											// provided
-																											// classes
-																											// as
-																											// "true"
-																											// (is
-																											// retryable)
+		// white
+		// list
+		// means
+		// classifying
+		// provided
+		// classes
+		// as
+		// "true"
+		// (is
+		// retryable)
 		);
 		classifier.setTraverseCauses(traverseCauses);
 		return classifier;

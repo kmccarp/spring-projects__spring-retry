@@ -30,7 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CircuitBreakerResetTimeoutTests {
 
 	private final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-			CircuitBreakerResetTimeoutTests.TestConfiguration.class);
+CircuitBreakerResetTimeoutTests.TestConfiguration.class);
 
 	private final TestService serviceInTest = context.getBean(TestService.class);
 
@@ -87,7 +87,7 @@ public class CircuitBreakerResetTimeoutTests {
 
 		private RetryContext context;
 
-		@CircuitBreaker(retryFor = { RuntimeException.class }, openTimeout = 10000, resetTimeout = 15000)
+		@CircuitBreaker(retryFor = {RuntimeException.class}, openTimeout = 10000, resetTimeout = 15000)
 		String service(String payload) {
 			this.context = RetrySynchronizationManager.getContext();
 			System.out.println("real service called");

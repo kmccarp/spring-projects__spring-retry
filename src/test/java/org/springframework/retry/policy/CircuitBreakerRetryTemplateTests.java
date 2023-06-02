@@ -75,12 +75,12 @@ public class CircuitBreakerRetryTemplateTests {
 		this.retryTemplate.setRetryPolicy(new CircuitBreakerRetryPolicy(new NeverRetryPolicy()));
 		this.retryTemplate.setThrowLastExceptionOnExhausted(true);
 		assertThatExceptionOfType(Exception.class)
-			.isThrownBy(() -> this.retryTemplate.execute(this.callback, this.state))
-			.isEqualTo(this.callback.exceptionToThrow);
+	.isThrownBy(() -> this.retryTemplate.execute(this.callback, this.state))
+	.isEqualTo(this.callback.exceptionToThrow);
 		assertThat(this.callback.getAttempts()).isEqualTo(1);
 		assertThatExceptionOfType(Exception.class)
-			.isThrownBy(() -> this.retryTemplate.execute(this.callback, this.state))
-			.isEqualTo(this.callback.exceptionToThrow);
+	.isThrownBy(() -> this.retryTemplate.execute(this.callback, this.state))
+	.isEqualTo(this.callback.exceptionToThrow);
 		assertThat(this.callback.getAttempts()).isEqualTo(1);
 	}
 

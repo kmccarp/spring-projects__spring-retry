@@ -64,11 +64,11 @@ public class ExponentialRandomBackOffPolicyTests {
 		long initialInterval = backOffPolicy.getInitialInterval();
 		for (int i = 0; i < sleeps.size(); i++) {
 			long expectedMaxValue = 2 * (long) (initialInterval
-					+ initialInterval * Math.max(1, Math.pow(backOffPolicy.getMultiplier(), i)));
+		+ initialInterval * Math.max(1, Math.pow(backOffPolicy.getMultiplier(), i)));
 			assertThat(sleeps.get(i))
-				.describedAs("Found a sleep [%d] which exceeds our max expected value of %d at interval %d",
-						sleeps.get(i), expectedMaxValue, i)
-				.isLessThan(expectedMaxValue);
+		.describedAs("Found a sleep [%d] which exceeds our max expected value of %d at interval %d",
+	sleeps.get(i), expectedMaxValue, i)
+		.isLessThan(expectedMaxValue);
 		}
 	}
 
@@ -87,11 +87,11 @@ public class ExponentialRandomBackOffPolicyTests {
 		long initialInterval = backOffPolicy.getInitialInterval();
 		for (int i = 0; i < sleeps.size(); i++) {
 			long expectedMaxValue = 2 * (long) (initialInterval
-					+ initialInterval * Math.max(1, Math.pow(backOffPolicy.getMultiplier(), i)));
+		+ initialInterval * Math.max(1, Math.pow(backOffPolicy.getMultiplier(), i)));
 			assertThat(sleeps.get(i))
-				.describedAs("Found a sleep [%d] which exceeds our max expected value of %d at interval %d",
-						sleeps.get(i), expectedMaxValue, i)
-				.isLessThanOrEqualTo(expectedMaxValue);
+		.describedAs("Found a sleep [%d] which exceeds our max expected value of %d at interval %d",
+	sleeps.get(i), expectedMaxValue, i)
+		.isLessThanOrEqualTo(expectedMaxValue);
 		}
 	}
 

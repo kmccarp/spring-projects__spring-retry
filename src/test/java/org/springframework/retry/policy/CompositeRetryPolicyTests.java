@@ -40,7 +40,7 @@ public class CompositeRetryPolicyTests {
 	@Test
 	public void testTrivialPolicies() {
 		CompositeRetryPolicy policy = new CompositeRetryPolicy();
-		policy.setPolicies(new RetryPolicy[] { new MockRetryPolicySupport(), new MockRetryPolicySupport() });
+		policy.setPolicies(new RetryPolicy[]{new MockRetryPolicySupport(), new MockRetryPolicySupport()});
 		RetryContext context = policy.open(null);
 		assertThat(context).isNotNull();
 		assertThat(policy.canRetry(context)).isTrue();
@@ -50,11 +50,11 @@ public class CompositeRetryPolicyTests {
 	@Test
 	public void testNonTrivialPolicies() {
 		CompositeRetryPolicy policy = new CompositeRetryPolicy();
-		policy.setPolicies(new RetryPolicy[] { new MockRetryPolicySupport(), new MockRetryPolicySupport() {
+		policy.setPolicies(new RetryPolicy[]{new MockRetryPolicySupport(), new MockRetryPolicySupport() {
 			public boolean canRetry(RetryContext context) {
 				return false;
 			}
-		} });
+		}});
 		RetryContext context = policy.open(null);
 		assertThat(context).isNotNull();
 		assertThat(policy.canRetry(context)).isFalse();
@@ -64,7 +64,7 @@ public class CompositeRetryPolicyTests {
 	@Test
 	public void testNonTrivialPoliciesWithThrowable() {
 		CompositeRetryPolicy policy = new CompositeRetryPolicy();
-		policy.setPolicies(new RetryPolicy[] { new MockRetryPolicySupport(), new MockRetryPolicySupport() {
+		policy.setPolicies(new RetryPolicy[]{new MockRetryPolicySupport(), new MockRetryPolicySupport() {
 			boolean errorRegistered = false;
 
 			public boolean canRetry(RetryContext context) {
@@ -74,7 +74,7 @@ public class CompositeRetryPolicyTests {
 			public void registerThrowable(RetryContext context, Throwable throwable) {
 				errorRegistered = true;
 			}
-		} });
+		}});
 		RetryContext context = policy.open(null);
 		assertThat(context).isNotNull();
 		assertThat(policy.canRetry(context)).isTrue();
@@ -87,7 +87,7 @@ public class CompositeRetryPolicyTests {
 	public void testNonTrivialPoliciesClose() {
 		final List<String> list = new ArrayList<>();
 		CompositeRetryPolicy policy = new CompositeRetryPolicy();
-		policy.setPolicies(new RetryPolicy[] { new MockRetryPolicySupport() {
+		policy.setPolicies(new RetryPolicy[]{new MockRetryPolicySupport() {
 			public void close(RetryContext context) {
 				list.add("1");
 			}
@@ -95,7 +95,7 @@ public class CompositeRetryPolicyTests {
 			public void close(RetryContext context) {
 				list.add("2");
 			}
-		} });
+		}});
 		RetryContext context = policy.open(null);
 		assertThat(context).isNotNull();
 		policy.close(context);
@@ -107,7 +107,7 @@ public class CompositeRetryPolicyTests {
 	public void testExceptionOnPoliciesClose() {
 		final List<String> list = new ArrayList<>();
 		CompositeRetryPolicy policy = new CompositeRetryPolicy();
-		policy.setPolicies(new RetryPolicy[] { new MockRetryPolicySupport() {
+		policy.setPolicies(new RetryPolicy[]{new MockRetryPolicySupport() {
 			public void close(RetryContext context) {
 				list.add("1");
 				throw new RuntimeException("Pah!");
@@ -116,7 +116,7 @@ public class CompositeRetryPolicyTests {
 			public void close(RetryContext context) {
 				list.add("2");
 			}
-		} });
+		}});
 		RetryContext context = policy.open(null);
 		assertThat(context).isNotNull();
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> policy.close(context)).withMessage("Pah!");
@@ -126,7 +126,7 @@ public class CompositeRetryPolicyTests {
 	@Test
 	public void testRetryCount() {
 		CompositeRetryPolicy policy = new CompositeRetryPolicy();
-		policy.setPolicies(new RetryPolicy[] { new MockRetryPolicySupport(), new MockRetryPolicySupport() });
+		policy.setPolicies(new RetryPolicy[]{new MockRetryPolicySupport(), new MockRetryPolicySupport()});
 		RetryContext context = policy.open(null);
 		assertThat(context).isNotNull();
 		policy.registerThrowable(context, null);
@@ -150,11 +150,11 @@ public class CompositeRetryPolicyTests {
 	public void testOptimistic() {
 		CompositeRetryPolicy policy = new CompositeRetryPolicy();
 		policy.setOptimistic(true);
-		policy.setPolicies(new RetryPolicy[] { new MockRetryPolicySupport() {
+		policy.setPolicies(new RetryPolicy[]{new MockRetryPolicySupport() {
 			public boolean canRetry(RetryContext context) {
 				return false;
 			}
-		}, new MockRetryPolicySupport() });
+		}, new MockRetryPolicySupport()});
 		RetryContext context = policy.open(null);
 		assertThat(context).isNotNull();
 		assertThat(policy.canRetry(context)).isTrue();

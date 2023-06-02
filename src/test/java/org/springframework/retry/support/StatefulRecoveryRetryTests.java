@@ -93,7 +93,7 @@ public class StatefulRecoveryRetryTests {
 		};
 		Object result = null;
 		assertThatExceptionOfType(Exception.class)
-			.isThrownBy(() -> this.retryTemplate.execute(callback, recoveryCallback, state));
+	.isThrownBy(() -> this.retryTemplate.execute(callback, recoveryCallback, state));
 		// On the second retry, the recovery path is taken...
 		result = this.retryTemplate.execute(callback, recoveryCallback, state);
 		assertThat(result).isEqualTo(input); // default result is the item
@@ -106,7 +106,7 @@ public class StatefulRecoveryRetryTests {
 		this.retryTemplate.setRetryPolicy(new SimpleRetryPolicy(1));
 		// Roll back for these:
 		BinaryExceptionClassifier classifier = new BinaryExceptionClassifier(
-				Collections.<Class<? extends Throwable>>singleton(DataAccessException.class));
+	Collections.<Class<? extends Throwable>>singleton(DataAccessException.class));
 		// ...but not these:
 		assertThat(classifier.classify(new RuntimeException())).isFalse();
 		final String input = "foo";
@@ -139,9 +139,9 @@ public class StatefulRecoveryRetryTests {
 		};
 
 		assertThatExceptionOfType(Exception.class).isThrownBy(() -> this.retryTemplate.execute(callback, state))
-			.withMessage("Barf!");
+	.withMessage("Barf!");
 		assertThatExceptionOfType(ExhaustedRetryException.class)
-			.isThrownBy(() -> this.retryTemplate.execute(callback, state));
+	.isThrownBy(() -> this.retryTemplate.execute(callback, state));
 
 		RetryContext context = this.retryTemplate.open(retryPolicy, state);
 		// True after exhausted - the history is reset...
@@ -165,12 +165,12 @@ public class StatefulRecoveryRetryTests {
 		};
 
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> this.retryTemplate.execute(callback, state))
-			.withMessage("Barf!");
+	.withMessage("Barf!");
 		// Only fails second attempt because the algorithm to detect
 		// inconsistent has codes relies on the cache having been used for this
 		// item already...
 		assertThatExceptionOfType(RetryException.class).isThrownBy(() -> this.retryTemplate.execute(callback, state))
-			.withStackTraceContaining("inconsistent");
+	.withStackTraceContaining("inconsistent");
 
 		RetryContext context = this.retryTemplate.open(retryPolicy, state);
 		// True after exhausted - the history is reset...
@@ -190,12 +190,12 @@ public class StatefulRecoveryRetryTests {
 		};
 
 		assertThatExceptionOfType(RuntimeException.class)
-			.isThrownBy(() -> this.retryTemplate.execute(callback, new DefaultRetryState("foo")))
-			.withMessage("Barf!");
+	.isThrownBy(() -> this.retryTemplate.execute(callback, new DefaultRetryState("foo")))
+	.withMessage("Barf!");
 
 		assertThatExceptionOfType(RetryException.class)
-			.isThrownBy(() -> this.retryTemplate.execute(callback, new DefaultRetryState("bar")))
-			.withStackTraceContaining("capacity");
+	.isThrownBy(() -> this.retryTemplate.execute(callback, new DefaultRetryState("bar")))
+	.withStackTraceContaining("capacity");
 	}
 
 	@Test
@@ -214,8 +214,8 @@ public class StatefulRecoveryRetryTests {
 		RecoveryCallback<Object> recoveryCallback = context -> null;
 
 		assertThatExceptionOfType(RuntimeException.class)
-			.isThrownBy(() -> this.retryTemplate.execute(callback, recoveryCallback, state))
-			.withMessage("Barf!");
+	.isThrownBy(() -> this.retryTemplate.execute(callback, recoveryCallback, state))
+	.withMessage("Barf!");
 		this.retryTemplate.execute(callback, recoveryCallback, state);
 
 		RetryContext context = this.retryTemplate.open(retryPolicy, state);

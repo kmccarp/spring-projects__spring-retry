@@ -130,7 +130,7 @@ public class RecoverAnnotationRecoveryHandler<T> implements MethodInvocationReco
 					}
 					else if (distance == min) {
 						boolean parametersMatch = compareParameters(args, meta.getArgCount(),
-								method.getParameterTypes());
+					method.getParameterTypes());
 						if (parametersMatch) {
 							result = method;
 						}
@@ -144,7 +144,7 @@ public class RecoverAnnotationRecoveryHandler<T> implements MethodInvocationReco
 				if (method.getName().equals(this.recoverMethodName)) {
 					SimpleMetadata meta = entry.getValue();
 					if (meta.type.isAssignableFrom(cause)
-							&& compareParameters(args, meta.getArgCount(), method.getParameterTypes())) {
+				&& compareParameters(args, meta.getArgCount(), method.getParameterTypes())) {
 						result = method;
 						break;
 					}
@@ -199,9 +199,9 @@ public class RecoverAnnotationRecoveryHandler<T> implements MethodInvocationReco
 				recover = findAnnotationOnTarget(target, candidate);
 			}
 			if (recover != null && failingMethod.getGenericReturnType() instanceof ParameterizedType
-					&& candidate.getGenericReturnType() instanceof ParameterizedType) {
+		&& candidate.getGenericReturnType() instanceof ParameterizedType) {
 				if (isParameterizedTypeAssignable((ParameterizedType) candidate.getGenericReturnType(),
-						(ParameterizedType) failingMethod.getGenericReturnType())) {
+			(ParameterizedType) failingMethod.getGenericReturnType())) {
 					putToMethodsMap(candidate, types);
 				}
 			}
@@ -223,7 +223,7 @@ public class RecoverAnnotationRecoveryHandler<T> implements MethodInvocationReco
 	 * @since 1.3.2
 	 */
 	private static boolean isParameterizedTypeAssignable(ParameterizedType methodReturnType,
-			ParameterizedType failingMethodReturnType) {
+ParameterizedType failingMethodReturnType) {
 
 		Type[] methodActualArgs = methodReturnType.getActualTypeArguments();
 		Type[] failingMethodActualArgs = failingMethodReturnType.getActualTypeArguments();
@@ -236,7 +236,7 @@ public class RecoverAnnotationRecoveryHandler<T> implements MethodInvocationReco
 			Type failingMethodArgType = failingMethodActualArgs[i];
 			if (methodArgType instanceof ParameterizedType && failingMethodArgType instanceof ParameterizedType) {
 				if (!isParameterizedTypeAssignable((ParameterizedType) methodArgType,
-						(ParameterizedType) failingMethodArgType)) {
+			(ParameterizedType) failingMethodArgType)) {
 
 					return false;
 				}

@@ -74,8 +74,7 @@ import org.springframework.util.ReflectionUtils;
 @SuppressWarnings("serial")
 @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 @Component
-public class RetryConfiguration extends AbstractPointcutAdvisor
-		implements IntroductionAdvisor, BeanFactoryAware, InitializingBean, SmartInitializingSingleton, ImportAware {
+public class RetryConfiguration extends AbstractPointcutAdvisorimplements IntroductionAdvisor, BeanFactoryAware, InitializingBean, SmartInitializingSingleton, ImportAware {
 
 	@Nullable
 	protected AnnotationAttributes enableRetry;
@@ -99,7 +98,7 @@ public class RetryConfiguration extends AbstractPointcutAdvisor
 	@Override
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
 		this.enableRetry = AnnotationAttributes
-			.fromMap(importMetadata.getAnnotationAttributes(EnableRetry.class.getName()));
+	.fromMap(importMetadata.getAnnotationAttributes(EnableRetry.class.getName()));
 	}
 
 	@Override
@@ -163,7 +162,7 @@ public class RetryConfiguration extends AbstractPointcutAdvisor
 
 	@Override
 	public Class<?>[] getInterfaces() {
-		return new Class[] { org.springframework.retry.interceptor.Retryable.class };
+		return new Class[]{org.springframework.retry.interceptor.Retryable.class};
 	}
 
 	@Override
@@ -275,7 +274,7 @@ public class RetryConfiguration extends AbstractPointcutAdvisor
 					return;
 				}
 				Annotation annotation = AnnotationUtils.findAnnotation(method,
-						AnnotationMethodsResolver.this.annotationType);
+			AnnotationMethodsResolver.this.annotationType);
 				if (annotation != null) {
 					found.set(true);
 				}

@@ -31,11 +31,11 @@ import org.springframework.retry.RetryListener;
 public class RetryListenerSupport implements RetryListener {
 
 	public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback,
-			Throwable throwable) {
+Throwable throwable) {
 	}
 
 	public <T, E extends Throwable> void onError(RetryContext context, RetryCallback<T, E> callback,
-			Throwable throwable) {
+Throwable throwable) {
 	}
 
 	public <T, E extends Throwable> boolean open(RetryContext context, RetryCallback<T, E> callback) {

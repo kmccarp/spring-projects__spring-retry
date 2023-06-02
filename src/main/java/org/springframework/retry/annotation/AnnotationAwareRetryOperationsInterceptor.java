@@ -229,10 +229,10 @@ public class AnnotationAwareRetryOperationsInterceptor implements IntroductionIn
 		template.setRetryPolicy(getRetryPolicy(retryable, true));
 		template.setBackOffPolicy(getBackoffPolicy(retryable.backoff(), true));
 		return RetryInterceptorBuilder.stateless()
-			.retryOperations(template)
-			.label(retryable.label())
-			.recoverer(getRecoverer(target, method))
-			.build();
+	.retryOperations(template)
+	.label(retryable.label())
+	.recoverer(getRecoverer(target, method))
+	.build();
 	}
 
 	private MethodInterceptor getStatefulInterceptor(Object target, Method method, Retryable retryable) {
@@ -255,23 +255,23 @@ public class AnnotationAwareRetryOperationsInterceptor implements IntroductionIn
 				label = method.toGenericString();
 			}
 			return RetryInterceptorBuilder.circuitBreaker()
-				.keyGenerator(new FixedKeyGenerator("circuit"))
-				.retryOperations(template)
-				.recoverer(getRecoverer(target, method))
-				.label(label)
-				.build();
+		.keyGenerator(new FixedKeyGenerator("circuit"))
+		.retryOperations(template)
+		.recoverer(getRecoverer(target, method))
+		.label(label)
+		.build();
 		}
 		RetryPolicy policy = getRetryPolicy(retryable, false);
 		template.setRetryPolicy(policy);
 		template.setBackOffPolicy(getBackoffPolicy(retryable.backoff(), false));
 		String label = retryable.label();
 		return RetryInterceptorBuilder.stateful()
-			.keyGenerator(this.methodArgumentsKeyGenerator)
-			.newMethodArgumentsIdentifier(this.newMethodArgumentsIdentifier)
-			.retryOperations(template)
-			.label(label)
-			.recoverer(getRecoverer(target, method))
-			.build();
+	.keyGenerator(this.methodArgumentsKeyGenerator)
+	.newMethodArgumentsIdentifier(this.newMethodArgumentsIdentifier)
+	.retryOperations(template)
+	.label(label)
+	.recoverer(getRecoverer(target, method))
+	.build();
 	}
 
 	private void openTimeout(CircuitBreakerRetryPolicy breaker, CircuitBreaker circuit) {
@@ -374,8 +374,8 @@ public class AnnotationAwareRetryOperationsInterceptor implements IntroductionIn
 		SimpleRetryPolicy simple = null;
 		if (includes.length == 0 && excludes.length == 0) {
 			simple = hasExpression
-					? new ExpressionRetryPolicy(resolve(exceptionExpression)).withBeanFactory(this.beanFactory)
-					: new SimpleRetryPolicy();
+		? new ExpressionRetryPolicy(resolve(exceptionExpression)).withBeanFactory(this.beanFactory)
+		: new SimpleRetryPolicy();
 			if (expression != null) {
 				simple.maxAttemptsSupplier(() -> evaluate(expression, Integer.class, stateless));
 			}
@@ -394,8 +394,8 @@ public class AnnotationAwareRetryOperationsInterceptor implements IntroductionIn
 		if (simple == null) {
 			if (hasExpression) {
 				simple = new ExpressionRetryPolicy(maxAttempts, policyMap, true, resolve(exceptionExpression),
-						retryNotExcluded)
-					.withBeanFactory(this.beanFactory);
+			retryNotExcluded)
+			.withBeanFactory(this.beanFactory);
 			}
 			else {
 				simple = new SimpleRetryPolicy(maxAttempts, policyMap, true, retryNotExcluded);
@@ -458,11 +458,11 @@ public class AnnotationAwareRetryOperationsInterceptor implements IntroductionIn
 			}
 		}
 		return buildBackOff(min, parsedMinExp, max, parsedMaxExp, multiplier, parsedMultExp, isRandom, parsedRandomExp,
-				stateless);
+	stateless);
 	}
 
 	private BackOffPolicy buildBackOff(long min, Expression minExp, long max, Expression maxExp, double multiplier,
-			Expression multExp, boolean isRandom, Expression randomExp, boolean stateless) {
+Expression multExp, boolean isRandom, Expression randomExp, boolean stateless) {
 
 		BackOffPolicyBuilder builder = BackOffPolicyBuilder.newBuilder();
 		if (minExp != null) {
@@ -504,7 +504,7 @@ public class AnnotationAwareRetryOperationsInterceptor implements IntroductionIn
 
 	private boolean isTemplate(String expression) {
 		return expression.contains(PARSER_CONTEXT.getExpressionPrefix())
-				&& expression.contains(PARSER_CONTEXT.getExpressionSuffix());
+	&& expression.contains(PARSER_CONTEXT.getExpressionSuffix());
 	}
 
 	private <T> T evaluate(Expression expression, Class<T> type, boolean stateless) {

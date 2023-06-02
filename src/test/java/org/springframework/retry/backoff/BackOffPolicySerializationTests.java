@@ -58,8 +58,8 @@ public class BackOffPolicySerializationTests {
 		Set<BeanDefinition> candidates = scanner.findCandidateComponents("org.springframework.retry");
 		for (BeanDefinition beanDefinition : candidates) {
 			try {
-				result.add(new Object[] {
-						BeanUtils.instantiate(ClassUtils.resolveClassName(beanDefinition.getBeanClassName(), null)) });
+				result.add(new Object[]{
+			BeanUtils.instantiate(ClassUtils.resolveClassName(beanDefinition.getBeanClassName(), null))});
 			}
 			catch (Exception e) {
 				logger.warn("Cannot create instance of " + beanDefinition.getBeanClassName());

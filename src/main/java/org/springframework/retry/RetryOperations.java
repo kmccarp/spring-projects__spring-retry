@@ -52,7 +52,7 @@ public interface RetryOperations {
 	 * @throws E any {@link Exception} raised by the unsuccessful retry.
 	 */
 	<T, E extends Throwable> T execute(RetryCallback<T, E> retryCallback, RecoveryCallback<T> recoveryCallback)
-			throws E;
+throws E;
 
 	/**
 	 * A simple stateful retry. Execute the supplied {@link RetryCallback} with a target
@@ -74,7 +74,7 @@ public interface RetryOperations {
 	 * reached
 	 */
 	<T, E extends Throwable> T execute(RetryCallback<T, E> retryCallback, RetryState retryState)
-			throws E, ExhaustedRetryException;
+throws E, ExhaustedRetryException;
 
 	/**
 	 * A stateful retry with a recovery path. Execute the supplied {@link RetryCallback}
@@ -92,6 +92,6 @@ public interface RetryOperations {
 	 * unsuccessful retry.
 	 */
 	<T, E extends Throwable> T execute(RetryCallback<T, E> retryCallback, RecoveryCallback<T> recoveryCallback,
-			RetryState retryState) throws E;
+RetryState retryState) throws E;
 
 }

@@ -87,8 +87,8 @@ public class SoftReferenceMapRetryContextCache implements RetryContextCache {
 	public void put(Object key, RetryContext context) {
 		if (map.size() >= capacity) {
 			throw new RetryCacheCapacityExceededException("Retry cache capacity limit breached. "
-					+ "Do you need to re-consider the implementation of the key generator, "
-					+ "or the equals and hashCode of the items that failed?");
+		+ "Do you need to re-consider the implementation of the key generator, "
+		+ "or the equals and hashCode of the items that failed?");
 		}
 		map.put(key, new SoftReference<>(context));
 	}

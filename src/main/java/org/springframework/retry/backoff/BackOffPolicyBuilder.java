@@ -237,7 +237,7 @@ public class BackOffPolicyBuilder {
 			}
 			if (this.maxDelay != null && this.delay != null) {
 				policy.setMaxInterval(
-						this.maxDelay > this.delay ? this.maxDelay : ExponentialBackOffPolicy.DEFAULT_MAX_INTERVAL);
+			this.maxDelay > this.delay ? this.maxDelay : ExponentialBackOffPolicy.DEFAULT_MAX_INTERVAL);
 			}
 			if (this.maxDelaySupplier != null) {
 				policy.maxIntervalSupplier(this.maxDelaySupplier);

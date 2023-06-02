@@ -43,7 +43,7 @@ public class BinaryExceptionClassifier extends SubclassClassifier<Throwable, Boo
 	public static BinaryExceptionClassifier defaultClassifier() {
 		// create new instance for each call due to mutability
 		return new BinaryExceptionClassifier(
-				Collections.<Class<? extends Throwable>, Boolean>singletonMap(Exception.class, true), false);
+	Collections.<Class<? extends Throwable>, Boolean>singletonMap(Exception.class, true), false);
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class BinaryExceptionClassifier extends SubclassClassifier<Throwable, Boo
 	 * non-default class
 	 */
 	public BinaryExceptionClassifier(Map<Class<? extends Throwable>, Boolean> typeMap, boolean defaultValue,
-			boolean traverseCauses) {
+boolean traverseCauses) {
 		super(typeMap, defaultValue);
 		this.traverseCauses = traverseCauses;
 	}

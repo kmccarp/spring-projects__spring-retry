@@ -57,11 +57,11 @@ public class SimpleMethodInvoker implements MethodInvoker {
 		Method method = ClassUtils.getMethodIfAvailable(object.getClass(), methodName, paramTypes);
 		if (method == null) {
 			// try with no params
-			method = ClassUtils.getMethodIfAvailable(object.getClass(), methodName, new Class[] {});
+			method = ClassUtils.getMethodIfAvailable(object.getClass(), methodName, new Class[]{});
 		}
 
 		Assert.notNull(method, "No methods found for name: [" + methodName + "] in class: [" + object.getClass()
-				+ "] with arguments of type: [" + Arrays.toString(paramTypes) + "]");
+	+ "] with arguments of type: [" + Arrays.toString(paramTypes) + "]");
 
 		this.object = object;
 		this.method = method;
@@ -78,7 +78,7 @@ public class SimpleMethodInvoker implements MethodInvoker {
 	@Override
 	public Object invokeMethod(Object... args) {
 		Assert.state(this.parameterTypes.length == args.length,
-				"Wrong number of arguments, expected no more than: [" + this.parameterTypes.length + "]");
+	"Wrong number of arguments, expected no more than: [" + this.parameterTypes.length + "]");
 
 		try {
 			// Extract the target from an Advised as late as possible
@@ -88,7 +88,7 @@ public class SimpleMethodInvoker implements MethodInvoker {
 		}
 		catch (Exception e) {
 			throw new IllegalArgumentException("Unable to invoke method: [" + this.method + "] on object: ["
-					+ this.object + "] with arguments: [" + Arrays.toString(args) + "]", e);
+		+ this.object + "] with arguments: [" + Arrays.toString(args) + "]", e);
 		}
 	}
 

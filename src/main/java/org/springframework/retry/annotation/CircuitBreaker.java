@@ -33,7 +33,7 @@ import org.springframework.core.annotation.AliasFor;
  * @since 1.2
  *
  */
-@Target({ ElementType.METHOD, ElementType.TYPE })
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Retryable(stateful = true)

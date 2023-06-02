@@ -83,14 +83,14 @@ public class RetryTemplateBuilderTests {
 		RetryListener listener2 = mock(RetryListener.class);
 
 		RetryTemplate template = RetryTemplate.builder()
-			.maxAttempts(10)
-			.exponentialBackoff(99, 1.5, 1717)
-			.retryOn(IOException.class)
-			.retryOn(Collections.<Class<? extends Throwable>>singletonList(IllegalArgumentException.class))
-			.traversingCauses()
-			.withListener(listener1)
-			.withListeners(Collections.singletonList(listener2))
-			.build();
+	.maxAttempts(10)
+	.exponentialBackoff(99, 1.5, 1717)
+	.retryOn(IOException.class)
+	.retryOn(Collections.<Class<? extends Throwable>>singletonList(IllegalArgumentException.class))
+	.traversingCauses()
+	.withListener(listener1)
+	.withListeners(Collections.singletonList(listener2))
+	.build();
 
 		PolicyTuple policyTuple = PolicyTuple.extractWithAsserts(template);
 
@@ -116,7 +116,7 @@ public class RetryTemplateBuilderTests {
 	@Test
 	public void testFailOnRetryPoliciesConflict() {
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> RetryTemplate.builder().maxAttempts(3).withTimeout(1000).build());
+	.isThrownBy(() -> RetryTemplate.builder().maxAttempts(3).withTimeout(1000).build());
 	}
 
 	@Test
@@ -193,14 +193,14 @@ public class RetryTemplateBuilderTests {
 	@Test
 	public void testFailOnNotationMix() {
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> RetryTemplate.builder().retryOn(IOException.class).notRetryOn(OutOfMemoryError.class));
+	.isThrownBy(() -> RetryTemplate.builder().retryOn(IOException.class).notRetryOn(OutOfMemoryError.class));
 	}
 
 	@Test
 	public void testFailOnNotationsMix() {
 		assertThatIllegalArgumentException().isThrownBy(() -> RetryTemplate.builder()
-			.retryOn(Collections.<Class<? extends Throwable>>singletonList(IOException.class))
-			.notRetryOn(Collections.<Class<? extends Throwable>>singletonList(OutOfMemoryError.class)));
+	.retryOn(Collections.<Class<? extends Throwable>>singletonList(IOException.class))
+	.notRetryOn(Collections.<Class<? extends Throwable>>singletonList(OutOfMemoryError.class)));
 	}
 
 	/* ---------------- BackOff -------------- */
@@ -213,7 +213,7 @@ public class RetryTemplateBuilderTests {
 	@Test
 	public void testFailOnBackOffPolicyConflict() {
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> RetryTemplate.builder().noBackoff().fixedBackoff(1000).build());
+	.isThrownBy(() -> RetryTemplate.builder().noBackoff().fixedBackoff(1000).build());
 	}
 
 	@Test
@@ -241,11 +241,11 @@ public class RetryTemplateBuilderTests {
 	@Test
 	public void testUniformRandomBackOffDuration() {
 		RetryTemplate template = RetryTemplate.builder()
-			.uniformRandomBackoff(Duration.ofSeconds(1), Duration.ofSeconds(2))
-			.build();
+	.uniformRandomBackoff(Duration.ofSeconds(1), Duration.ofSeconds(2))
+	.build();
 
 		UniformRandomBackOffPolicy policy = getPropertyValue(template, "backOffPolicy",
-				UniformRandomBackOffPolicy.class);
+	UniformRandomBackOffPolicy.class);
 
 		assertThat(policy.getMinBackOffPeriod()).isEqualTo(1000);
 		assertThat(policy.getMaxBackOffPeriod()).isEqualTo(2000);
@@ -270,8 +270,8 @@ public class RetryTemplateBuilderTests {
 	@Test
 	public void testExponentialBackoffDuration() {
 		RetryTemplate template = RetryTemplate.builder()
-			.exponentialBackoff(Duration.ofSeconds(2), 2, Duration.ofSeconds(3))
-			.build();
+	.exponentialBackoff(Duration.ofSeconds(2), 2, Duration.ofSeconds(3))
+	.build();
 
 		ExponentialBackOffPolicy policy = getPropertyValue(template, "backOffPolicy", ExponentialBackOffPolicy.class);
 
@@ -290,11 +290,11 @@ public class RetryTemplateBuilderTests {
 	@Test
 	public void testExponentialRandomBackoffDuration() {
 		RetryTemplate template = RetryTemplate.builder()
-			.exponentialBackoff(Duration.ofSeconds(2), 2, Duration.ofSeconds(3), true)
-			.build();
+	.exponentialBackoff(Duration.ofSeconds(2), 2, Duration.ofSeconds(3), true)
+	.build();
 
 		ExponentialRandomBackOffPolicy policy = getPropertyValue(template, "backOffPolicy",
-				ExponentialRandomBackOffPolicy.class);
+	ExponentialRandomBackOffPolicy.class);
 
 		assertThat(policy.getInitialInterval()).isEqualTo(2000);
 		assertThat(policy.getMultiplier()).isEqualTo(2);
@@ -304,19 +304,19 @@ public class RetryTemplateBuilderTests {
 	@Test
 	public void testValidateInitAndMax() {
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> RetryTemplate.builder().exponentialBackoff(100, 2, 100).build());
+	.isThrownBy(() -> RetryTemplate.builder().exponentialBackoff(100, 2, 100).build());
 	}
 
 	@Test
 	public void testValidateMeaninglessMultipier() {
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> RetryTemplate.builder().exponentialBackoff(100, 1, 200).build());
+	.isThrownBy(() -> RetryTemplate.builder().exponentialBackoff(100, 1, 200).build());
 	}
 
 	@Test
 	public void testValidateZeroInitInterval() {
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> RetryTemplate.builder().exponentialBackoff(0, 2, 200).build());
+	.isThrownBy(() -> RetryTemplate.builder().exponentialBackoff(0, 2, 200).build());
 	}
 
 	/* ---------------- Utils -------------- */
@@ -329,7 +329,7 @@ public class RetryTemplateBuilderTests {
 
 		static PolicyTuple extractWithAsserts(RetryTemplate template) {
 			CompositeRetryPolicy compositeRetryPolicy = getPropertyValue(template, "retryPolicy",
-					CompositeRetryPolicy.class);
+		CompositeRetryPolicy.class);
 			PolicyTuple res = new PolicyTuple();
 
 			assertThat(getPropertyValue(compositeRetryPolicy, "optimistic", Boolean.class)).isFalse();

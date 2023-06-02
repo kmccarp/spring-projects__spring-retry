@@ -80,7 +80,7 @@ public class RetryContextSupport extends AttributeAccessorSupport implements Ret
 	@Override
 	public String toString() {
 		return String.format("[RetryContext: count=%d, lastException=%s, exhausted=%b]", count, lastException,
-				terminate);
+	terminate);
 	}
 
 }

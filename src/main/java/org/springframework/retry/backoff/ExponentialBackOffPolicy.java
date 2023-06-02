@@ -228,7 +228,7 @@ public class ExponentialBackOffPolicy implements SleepingBackOffPolicy<Exponenti
 	@Override
 	public BackOffContext start(RetryContext context) {
 		return new ExponentialBackOffContext(this.initialInterval, this.multiplier, this.maxInterval,
-				this.initialIntervalSupplier, this.multiplierSupplier, this.maxIntervalSupplier);
+	this.initialIntervalSupplier, this.multiplierSupplier, this.maxIntervalSupplier);
 	}
 
 	/**
@@ -264,8 +264,8 @@ public class ExponentialBackOffPolicy implements SleepingBackOffPolicy<Exponenti
 		private Supplier<Long> maxIntervalSupplier;
 
 		public ExponentialBackOffContext(long interval, double multiplier, long maxInterval,
-				Supplier<Long> intervalSupplier, Supplier<Double> multiplierSupplier,
-				Supplier<Long> maxIntervalSupplier) {
+	Supplier<Long> intervalSupplier, Supplier<Double> multiplierSupplier,
+	Supplier<Long> maxIntervalSupplier) {
 			this.interval = interval;
 			this.multiplier = multiplier;
 			this.maxInterval = maxInterval;
@@ -307,7 +307,7 @@ public class ExponentialBackOffPolicy implements SleepingBackOffPolicy<Exponenti
 	@Override
 	public String toString() {
 		return ClassUtils.getShortName(getClass()) + "[initialInterval=" + getInitialInterval() + ", multiplier="
-				+ getMultiplier() + ", maxInterval=" + getMaxInterval() + "]";
+	+ getMultiplier() + ", maxInterval=" + getMaxInterval() + "]";
 	}
 
 }

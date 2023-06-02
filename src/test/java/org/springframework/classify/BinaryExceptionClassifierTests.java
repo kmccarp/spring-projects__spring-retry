@@ -55,14 +55,14 @@ public class BinaryExceptionClassifierTests {
 	@Test
 	public void testClassifyExactMatch() {
 		Collection<Class<? extends Throwable>> set = Collections
-			.<Class<? extends Throwable>>singleton(IllegalStateException.class);
+	.<Class<? extends Throwable>>singleton(IllegalStateException.class);
 		assertThat(new BinaryExceptionClassifier(set).classify(new IllegalStateException("Foo"))).isTrue();
 	}
 
 	@Test
 	public void testClassifyExactMatchInCause() {
 		Collection<Class<? extends Throwable>> set = Collections
-			.<Class<? extends Throwable>>singleton(IllegalStateException.class);
+	.<Class<? extends Throwable>>singleton(IllegalStateException.class);
 		BinaryExceptionClassifier binaryExceptionClassifier = new BinaryExceptionClassifier(set);
 		binaryExceptionClassifier.setTraverseCauses(true);
 		assertThat(binaryExceptionClassifier.classify(new RuntimeException(new IllegalStateException("Foo")))).isTrue();
@@ -71,7 +71,7 @@ public class BinaryExceptionClassifierTests {
 	@Test
 	public void testClassifySubclassMatchInCause() {
 		Collection<Class<? extends Throwable>> set = Collections
-			.<Class<? extends Throwable>>singleton(IllegalStateException.class);
+	.<Class<? extends Throwable>>singleton(IllegalStateException.class);
 		BinaryExceptionClassifier binaryExceptionClassifier = new BinaryExceptionClassifier(set);
 		binaryExceptionClassifier.setTraverseCauses(true);
 		assertThat(binaryExceptionClassifier.classify(new RuntimeException(new FooException("Foo")))).isTrue();
@@ -85,33 +85,33 @@ public class BinaryExceptionClassifierTests {
 		BinaryExceptionClassifier binaryExceptionClassifier = new BinaryExceptionClassifier(map, true);
 		binaryExceptionClassifier.setTraverseCauses(true);
 		assertThat(
-				binaryExceptionClassifier.classify(new RuntimeException(new FooException("Foo", new BarException()))))
-			.isTrue();
+	binaryExceptionClassifier.classify(new RuntimeException(new FooException("Foo", new BarException()))))
+	.isTrue();
 		assertThat(((Map<?, ?>) new DirectFieldAccessor(binaryExceptionClassifier).getPropertyValue("classified"))
-			.containsKey(FooException.class)).isTrue();
+	.containsKey(FooException.class)).isTrue();
 	}
 
 	@Test
 	public void testTypesProvidedInConstructor() {
 		classifier = new BinaryExceptionClassifier(
-				Collections.<Class<? extends Throwable>>singleton(IllegalStateException.class));
+	Collections.<Class<? extends Throwable>>singleton(IllegalStateException.class));
 		assertThat(classifier.classify(new IllegalStateException("Foo"))).isTrue();
 	}
 
 	@Test
 	public void testTypesProvidedInConstructorWithNonDefault() {
 		classifier = new BinaryExceptionClassifier(
-				Collections.<Class<? extends Throwable>>singleton(IllegalStateException.class), false);
+	Collections.<Class<? extends Throwable>>singleton(IllegalStateException.class), false);
 		assertThat(classifier.classify(new IllegalStateException("Foo"))).isFalse();
 	}
 
 	@Test
 	public void testTypesProvidedInConstructorWithNonDefaultInCause() {
 		classifier = new BinaryExceptionClassifier(
-				Collections.<Class<? extends Throwable>>singleton(IllegalStateException.class), false);
+	Collections.<Class<? extends Throwable>>singleton(IllegalStateException.class), false);
 		classifier.setTraverseCauses(true);
 		assertThat(classifier.classify(new RuntimeException(new RuntimeException(new IllegalStateException("Foo")))))
-			.isFalse();
+	.isFalse();
 	}
 
 	@SuppressWarnings("serial")

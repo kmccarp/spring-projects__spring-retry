@@ -47,7 +47,7 @@ public class RetrySimulation {
 	 */
 	public List<Double> getPercentiles() {
 		List<Double> res = new ArrayList<>();
-		for (double percentile : new double[] { 10, 20, 30, 40, 50, 60, 70, 80, 90 }) {
+		for (double percentile : new double[]{10, 20, 30, 40, 50, 60, 70, 80, 90}) {
 			res.add(getPercentile(percentile / 100));
 		}
 		return res;

@@ -74,7 +74,7 @@ public class CircuitBreakerInterceptorStatisticsTests {
 		assertThat(result).isEqualTo(RECOVERED);
 		assertThat(stats.getRecoveryCount()).describedAs("There should be two recoveries").isEqualTo(2);
 		assertThat(stats.getErrorCount()).describedAs("There should only be one error because the circuit is now open")
-			.isEqualTo(1);
+	.isEqualTo(1);
 	}
 
 	@Configuration

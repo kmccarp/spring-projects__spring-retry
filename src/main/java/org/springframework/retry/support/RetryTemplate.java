@@ -221,7 +221,7 @@ public class RetryTemplate implements RetryOperations {
 	 */
 	@Override
 	public final <T, E extends Throwable> T execute(RetryCallback<T, E> retryCallback,
-			RecoveryCallback<T> recoveryCallback) throws E {
+RecoveryCallback<T> recoveryCallback) throws E {
 		return doExecute(retryCallback, recoveryCallback, null);
 	}
 
@@ -236,7 +236,7 @@ public class RetryTemplate implements RetryOperations {
 	 */
 	@Override
 	public final <T, E extends Throwable> T execute(RetryCallback<T, E> retryCallback, RetryState retryState)
-			throws E, ExhaustedRetryException {
+throws E, ExhaustedRetryException {
 		return doExecute(retryCallback, null, retryState);
 	}
 
@@ -251,7 +251,7 @@ public class RetryTemplate implements RetryOperations {
 	 */
 	@Override
 	public final <T, E extends Throwable> T execute(RetryCallback<T, E> retryCallback,
-			RecoveryCallback<T> recoveryCallback, RetryState retryState) throws E, ExhaustedRetryException {
+RecoveryCallback<T> recoveryCallback, RetryState retryState) throws E, ExhaustedRetryException {
 		return doExecute(retryCallback, recoveryCallback, retryState);
 	}
 
@@ -269,7 +269,7 @@ public class RetryTemplate implements RetryOperations {
 	 * @return T the retried value
 	 */
 	protected <T, E extends Throwable> T doExecute(RetryCallback<T, E> retryCallback,
-			RecoveryCallback<T> recoveryCallback, RetryState state) throws E, ExhaustedRetryException {
+RecoveryCallback<T> recoveryCallback, RetryState state) throws E, ExhaustedRetryException {
 
 		RetryPolicy retryPolicy = this.retryPolicy;
 		BackOffPolicy backOffPolicy = this.backOffPolicy;
@@ -447,8 +447,8 @@ public class RetryTemplate implements RetryOperations {
 			if (key != null) {
 				if (context.getRetryCount() > 1 && !this.retryContextCache.containsKey(key)) {
 					throw new RetryException("Inconsistent state for failed item key: cache key has changed. "
-							+ "Consider whether equals() or hashCode() for the key might be inconsistent, "
-							+ "or if you need to supply a better key");
+				+ "Consider whether equals() or hashCode() for the key might be inconsistent, "
+				+ "or if you need to supply a better key");
 				}
 				this.retryContextCache.put(key, context);
 			}
@@ -485,8 +485,8 @@ public class RetryTemplate implements RetryOperations {
 		if (context == null) {
 			if (this.retryContextCache.containsKey(key)) {
 				throw new RetryException("Inconsistent state for failed item: no history found. "
-						+ "Consider whether equals() or hashCode() for the item might be inconsistent, "
-						+ "or if you need to supply a better ItemKeyGenerator");
+			+ "Consider whether equals() or hashCode() for the item might be inconsistent, "
+			+ "or if you need to supply a better ItemKeyGenerator");
 			}
 			// The cache could have been expired in between calls to
 			// containsKey(), so we have to live with this:
@@ -532,7 +532,7 @@ public class RetryTemplate implements RetryOperations {
 	 * @throws Throwable if there is an error
 	 */
 	protected <T> T handleRetryExhausted(RecoveryCallback<T> recoveryCallback, RetryContext context, RetryState state)
-			throws Throwable {
+throws Throwable {
 		context.setAttribute(RetryContext.EXHAUSTED, true);
 		if (state != null && !context.hasAttribute(GLOBAL_STATE)) {
 			this.retryContextCache.remove(state.getKey());
@@ -551,7 +551,7 @@ public class RetryTemplate implements RetryOperations {
 		if (state != null) {
 			this.logger.debug("Retry exhausted after last attempt with no recovery path.");
 			rethrow(context, "Retry exhausted after last attempt with no recovery path",
-					this.throwLastExceptionOnExhausted || !doRecover);
+		this.throwLastExceptionOnExhausted || !doRecover);
 		}
 		throw wrapIfNecessary(context.getLastThrowable());
 	}
@@ -593,22 +593,22 @@ public class RetryTemplate implements RetryOperations {
 	}
 
 	private <T, E extends Throwable> void doCloseInterceptors(RetryCallback<T, E> callback, RetryContext context,
-			Throwable lastException) {
-		for (int i = this.listeners.length; i-- > 0;) {
+Throwable lastException) {
+		for (int i = this.listeners.length; i-- > 0; ) {
 			this.listeners[i].close(context, callback, lastException);
 		}
 	}
 
 	private <T, E extends Throwable> void doOnSuccessInterceptors(RetryCallback<T, E> callback, RetryContext context,
-			T result) {
-		for (int i = this.listeners.length; i-- > 0;) {
+T result) {
+		for (int i = this.listeners.length; i-- > 0; ) {
 			this.listeners[i].onSuccess(context, callback, result);
 		}
 	}
 
 	private <T, E extends Throwable> void doOnErrorInterceptors(RetryCallback<T, E> callback, RetryContext context,
-			Throwable throwable) {
-		for (int i = this.listeners.length; i-- > 0;) {
+Throwable throwable) {
+		for (int i = this.listeners.length; i-- > 0; ) {
 			this.listeners[i].onError(context, callback, throwable);
 		}
 	}

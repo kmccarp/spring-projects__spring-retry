@@ -74,7 +74,7 @@ public class SimpleRetryPolicy implements RetryPolicy {
 	private BinaryExceptionClassifier retryableClassifier;
 
 	private BinaryExceptionClassifier recoverableClassifier = new BinaryExceptionClassifier(Collections.emptyMap(),
-			true, true);
+true, true);
 
 	/**
 	 * Create a {@link SimpleRetryPolicy} with the default number of retry attempts,
@@ -113,7 +113,7 @@ public class SimpleRetryPolicy implements RetryPolicy {
 	 * exception is found or the root cause is reached.
 	 */
 	public SimpleRetryPolicy(int maxAttempts, Map<Class<? extends Throwable>, Boolean> retryableExceptions,
-			boolean traverseCauses) {
+boolean traverseCauses) {
 		this(maxAttempts, retryableExceptions, traverseCauses, false);
 	}
 
@@ -130,7 +130,7 @@ public class SimpleRetryPolicy implements RetryPolicy {
 	 * @param defaultValue the default action.
 	 */
 	public SimpleRetryPolicy(int maxAttempts, Map<Class<? extends Throwable>, Boolean> retryableExceptions,
-			boolean traverseCauses, boolean defaultValue) {
+boolean traverseCauses, boolean defaultValue) {
 		super();
 		this.maxAttempts = maxAttempts;
 		this.retryableClassifier = new BinaryExceptionClassifier(retryableExceptions, defaultValue);

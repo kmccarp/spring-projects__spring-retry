@@ -99,7 +99,7 @@ public class RetryListenerTests {
 
 	@Test
 	public void testOpenInterceptors() {
-		template.setListeners(new RetryListener[] { new RetryListener() {
+		template.setListeners(new RetryListener[]{new RetryListener() {
 			public <T, E extends Throwable> boolean open(RetryContext context, RetryCallback<T, E> callback) {
 				count++;
 				list.add("1:" + count);
@@ -111,7 +111,7 @@ public class RetryListenerTests {
 				list.add("2:" + count);
 				return true;
 			}
-		} });
+		}});
 		template.execute(context -> null);
 		assertThat(count).isEqualTo(2);
 		assertThat(list).hasSize(2);
@@ -137,19 +137,19 @@ public class RetryListenerTests {
 
 	@Test
 	public void testCloseInterceptors() {
-		template.setListeners(new RetryListener[] { new RetryListener() {
+		template.setListeners(new RetryListener[]{new RetryListener() {
 			public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback,
-					Throwable t) {
+		Throwable t) {
 				count++;
 				list.add("1:" + count);
 			}
 		}, new RetryListener() {
 			public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback,
-					Throwable t) {
+		Throwable t) {
 				count++;
 				list.add("2:" + count);
 			}
-		} });
+		}});
 		template.execute(context -> null);
 		assertThat(count).isEqualTo(2);
 		assertThat(list).hasSize(2);
@@ -160,17 +160,17 @@ public class RetryListenerTests {
 	@Test
 	public void testOnError() {
 		template.setRetryPolicy(new NeverRetryPolicy());
-		template.setListeners(new RetryListener[] { new RetryListener() {
+		template.setListeners(new RetryListener[]{new RetryListener() {
 			public <T, E extends Throwable> void onError(RetryContext context, RetryCallback<T, E> callback,
-					Throwable throwable) {
+		Throwable throwable) {
 				list.add("1");
 			}
 		}, new RetryListener() {
 			public <T, E extends Throwable> void onError(RetryContext context, RetryCallback<T, E> callback,
-					Throwable throwable) {
+		Throwable throwable) {
 				list.add("2");
 			}
-		} });
+		}});
 		assertThatIllegalStateException().isThrownBy(() -> template.execute(context -> {
 			count++;
 			throw new IllegalStateException("foo");
@@ -187,7 +187,7 @@ public class RetryListenerTests {
 	public void testCloseInterceptorsAfterRetry() {
 		template.registerListener(new RetryListener() {
 			public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback,
-					Throwable t) {
+		Throwable t) {
 				list.add("" + count);
 				// The last attempt should have been successful:
 				assertThat(t).isNull();

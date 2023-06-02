@@ -54,8 +54,8 @@ public class SerializedMapRetryContextCache implements RetryContextCache {
 	public void put(Object key, RetryContext context) {
 		if (map.size() >= DEFAULT_CAPACITY) {
 			throw new RetryCacheCapacityExceededException("Retry cache capacity "
-					+ "limit breached. Do you need to re-consider the implementation of the key generator, "
-					+ "or the equals and hashCode of the items that failed?");
+		+ "limit breached. Do you need to re-consider the implementation of the key generator, "
+		+ "or the equals and hashCode of the items that failed?");
 		}
 		byte[] serialized = SerializationUtils.serialize(context);
 		map.put(key, serialized);

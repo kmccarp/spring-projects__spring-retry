@@ -76,12 +76,12 @@ public class ClassifierAdapter<C, T> implements Classifier<C, T> {
 	public final void setDelegate(Object delegate) {
 		this.classifier = null;
 		this.invoker = MethodInvokerUtils
-			.getMethodInvokerByAnnotation(org.springframework.classify.annotation.Classifier.class, delegate);
+	.getMethodInvokerByAnnotation(org.springframework.classify.annotation.Classifier.class, delegate);
 		if (this.invoker == null) {
 			this.invoker = MethodInvokerUtils.<C, T>getMethodInvokerForSingleArgument(delegate);
 		}
 		Assert.state(this.invoker != null, "No single argument public method with or without "
-				+ "@Classifier was found in delegate of type " + delegate.getClass());
+	+ "@Classifier was found in delegate of type " + delegate.getClass());
 	}
 
 	/**

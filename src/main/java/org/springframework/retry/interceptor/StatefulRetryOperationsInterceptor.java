@@ -149,7 +149,7 @@ public class StatefulRetryOperationsInterceptor implements MethodInterceptor {
 
 		if (this.logger.isDebugEnabled()) {
 			this.logger.debug("Executing proxied method in stateful retry: " + invocation.getStaticPart() + "("
-					+ ObjectUtils.getIdentityHexString(invocation) + ")");
+		+ ObjectUtils.getIdentityHexString(invocation) + ")");
 		}
 
 		Object[] args = invocation.getArguments();
@@ -160,11 +160,11 @@ public class StatefulRetryOperationsInterceptor implements MethodInterceptor {
 
 		Object key = createKey(invocation, defaultKey);
 		RetryState retryState = new DefaultRetryState(key,
-				this.newMethodArgumentsIdentifier != null && this.newMethodArgumentsIdentifier.isNew(args),
-				this.rollbackClassifier);
+	this.newMethodArgumentsIdentifier != null && this.newMethodArgumentsIdentifier.isNew(args),
+	this.rollbackClassifier);
 
 		Object result = this.retryOperations.execute(new StatefulMethodInvocationRetryCallback(invocation, label),
-				this.recoverer != null ? new ItemRecovererCallback(args, this.recoverer) : null, retryState);
+	this.recoverer != null ? new ItemRecovererCallback(args, this.recoverer) : null, retryState);
 
 		if (this.logger.isDebugEnabled()) {
 			this.logger.debug("Exiting proxied method in stateful retry with result: (" + result + ")");
@@ -196,7 +196,7 @@ public class StatefulRetryOperationsInterceptor implements MethodInterceptor {
 	 *
 	 */
 	private static final class StatefulMethodInvocationRetryCallback
-			extends MethodInvocationRetryCallback<Object, Throwable> {
+extends MethodInvocationRetryCallback<Object, Throwable> {
 
 		private StatefulMethodInvocationRetryCallback(MethodInvocation invocation, String label) {
 			super(invocation, label);

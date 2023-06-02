@@ -33,8 +33,7 @@ import org.springframework.util.Assert;
  * @author Dave Syer
  * @author Tomaz Fernandes
  */
-public class UniformRandomBackOffPolicy extends StatelessBackOffPolicy
-		implements SleepingBackOffPolicy<UniformRandomBackOffPolicy> {
+public class UniformRandomBackOffPolicy extends StatelessBackOffPolicyimplements SleepingBackOffPolicy<UniformRandomBackOffPolicy> {
 
 	/**
 	 * Default min back off period - 500ms.
@@ -134,7 +133,7 @@ public class UniformRandomBackOffPolicy extends StatelessBackOffPolicy
 		try {
 			Long min = this.minBackOffPeriod.get();
 			long delta = this.maxBackOffPeriod.get() == this.minBackOffPeriod.get() ? 0
-					: this.random.nextInt((int) (this.maxBackOffPeriod.get() - min));
+		: this.random.nextInt((int) (this.maxBackOffPeriod.get() - min));
 			this.sleeper.sleep(min + delta);
 		}
 		catch (InterruptedException e) {

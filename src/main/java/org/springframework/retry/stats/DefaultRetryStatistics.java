@@ -26,8 +26,7 @@ import org.springframework.retry.RetryStatistics;
  *
  */
 @SuppressWarnings("serial")
-public class DefaultRetryStatistics extends AttributeAccessorSupport
-		implements RetryStatistics, MutableRetryStatistics {
+public class DefaultRetryStatistics extends AttributeAccessorSupportimplements RetryStatistics, MutableRetryStatistics {
 
 	private String name;
 
@@ -110,8 +109,8 @@ public class DefaultRetryStatistics extends AttributeAccessorSupport
 	@Override
 	public String toString() {
 		return "DefaultRetryStatistics [name=" + name + ", startedCount=" + startedCount + ", completeCount="
-				+ completeCount + ", recoveryCount=" + recoveryCount + ", errorCount=" + errorCount + ", abortCount="
-				+ abortCount + "]";
+	+ completeCount + ", recoveryCount=" + recoveryCount + ", errorCount=" + errorCount + ", abortCount="
+	+ abortCount + "]";
 	}
 
 }

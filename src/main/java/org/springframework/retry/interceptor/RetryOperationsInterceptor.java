@@ -82,7 +82,7 @@ public class RetryOperationsInterceptor implements MethodInterceptor {
 		final String label = name;
 
 		RetryCallback<Object, Throwable> retryCallback = new MethodInvocationRetryCallback<Object, Throwable>(
-				invocation, label) {
+	invocation, label) {
 
 			@Override
 			public Object doWithRetry(RetryContext context) throws Exception {
@@ -110,8 +110,8 @@ public class RetryOperationsInterceptor implements MethodInterceptor {
 				}
 				else {
 					throw new IllegalStateException(
-							"MethodInvocation of the wrong type detected - this should not happen with Spring AOP, "
-									+ "so please raise an issue if you see this exception");
+				"MethodInvocation of the wrong type detected - this should not happen with Spring AOP, "
+			+ "so please raise an issue if you see this exception");
 				}
 			}
 
@@ -119,7 +119,7 @@ public class RetryOperationsInterceptor implements MethodInterceptor {
 
 		if (this.recoverer != null) {
 			ItemRecovererCallback recoveryCallback = new ItemRecovererCallback(invocation.getArguments(),
-					this.recoverer);
+		this.recoverer);
 			try {
 				Object recovered = this.retryOperations.execute(retryCallback, recoveryCallback);
 				return recovered;

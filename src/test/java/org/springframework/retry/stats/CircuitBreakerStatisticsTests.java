@@ -69,7 +69,7 @@ public class CircuitBreakerStatisticsTests {
 		this.retryTemplate = new RetryTemplate();
 		this.cache = new MapRetryContextCache();
 		this.retryTemplate.setRetryContextCache(this.cache);
-		retryTemplate.setListeners(new RetryListener[] { listener });
+		retryTemplate.setListeners(new RetryListener[]{listener});
 		this.callback.setAttemptsBeforeSuccess(1);
 		// No rollback by default (so exceptions are not rethrown)
 		this.state = new DefaultRetryState("retry", new BinaryExceptionClassifier(false));
@@ -86,7 +86,7 @@ public class CircuitBreakerStatisticsTests {
 		assertThat(result).isEqualTo(RECOVERED);
 		assertThat(stats.getRecoveryCount()).describedAs("There should be two recoveries").isEqualTo(2);
 		assertThat(stats.getErrorCount()).describedAs("There should only be one error because the circuit is now open")
-			.isEqualTo(1);
+	.isEqualTo(1);
 		assertThat(stats.getAttribute(CircuitBreakerRetryPolicy.CIRCUIT_OPEN)).isEqualTo(Boolean.TRUE);
 		// Both recoveries are through a short circuit because we used NeverRetryPolicy
 		assertThat(stats.getAttribute(CircuitBreakerRetryPolicy.CIRCUIT_SHORT_COUNT)).isEqualTo(2);
@@ -100,7 +100,7 @@ public class CircuitBreakerStatisticsTests {
 			throw new ExhaustedRetryException("Planned exhausted");
 		};
 		assertThatExceptionOfType(ExhaustedRetryException.class)
-			.isThrownBy(() -> this.retryTemplate.execute(this.callback, this.recovery, this.state));
+	.isThrownBy(() -> this.retryTemplate.execute(this.callback, this.recovery, this.state));
 		MutableRetryStatistics stats = (MutableRetryStatistics) repository.findOne("test");
 		assertThat(stats.getStartedCount()).isEqualTo(1);
 		assertThat(stats.getAbortCount()).isEqualTo(1);
@@ -124,7 +124,7 @@ public class CircuitBreakerStatisticsTests {
 		MutableRetryStatistics stats = (MutableRetryStatistics) repository.findOne("test");
 		assertThat(stats.getAbortCount()).describedAs("There should be two aborts").isEqualTo(2);
 		assertThat(stats.getErrorCount()).describedAs("There should only be one error because the circuit is now open")
-			.isEqualTo(1);
+	.isEqualTo(1);
 		assertThat(stats.getAttribute(CircuitBreakerRetryPolicy.CIRCUIT_OPEN)).isEqualTo(true);
 		resetAndAssert(this.cache, stats);
 	}

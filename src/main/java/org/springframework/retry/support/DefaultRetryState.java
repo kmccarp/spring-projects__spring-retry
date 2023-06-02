@@ -45,7 +45,7 @@ public class DefaultRetryState implements RetryState {
 	 * answers true if the exception provided should cause a rollback.
 	 */
 	public DefaultRetryState(Object key, boolean forceRefresh,
-			Classifier<? super Throwable, Boolean> rollbackClassifier) {
+Classifier<? super Throwable, Boolean> rollbackClassifier) {
 		this.key = key;
 		this.forceRefresh = forceRefresh;
 		this.rollbackClassifier = rollbackClassifier;

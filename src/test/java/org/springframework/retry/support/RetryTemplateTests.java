@@ -145,9 +145,9 @@ public class RetryTemplateTests {
 
 		RetryTemplate retryTemplate = new RetryTemplate();
 		retryTemplate.setRetryPolicy(new SimpleRetryPolicy(attempts,
-				Collections.<Class<? extends Throwable>, Boolean>singletonMap(Exception.class, true)));
+	Collections.<Class<? extends Throwable>, Boolean>singletonMap(Exception.class, true)));
 		BinaryExceptionClassifier classifier = new BinaryExceptionClassifier(
-				Collections.<Class<? extends Throwable>>singleton(IllegalArgumentException.class), false);
+	Collections.<Class<? extends Throwable>>singleton(IllegalArgumentException.class), false);
 		retryTemplate.execute(callback, new DefaultRetryState("foo", classifier));
 		assertThat(callback.attempts).isEqualTo(attempts);
 	}
@@ -156,7 +156,7 @@ public class RetryTemplateTests {
 	public void testSetExceptions() throws Throwable {
 		RetryTemplate template = new RetryTemplate();
 		SimpleRetryPolicy policy = new SimpleRetryPolicy(3,
-				Collections.<Class<? extends Throwable>, Boolean>singletonMap(RuntimeException.class, true));
+	Collections.<Class<? extends Throwable>, Boolean>singletonMap(RuntimeException.class, true));
 		template.setRetryPolicy(policy);
 
 		int attempts = 3;
@@ -225,11 +225,11 @@ public class RetryTemplateTests {
 				assertThat(RetryTemplateTests.this.context).isNotSameAs(status1);
 				assertThat(status1.getParent()).isSameAs(RetryTemplateTests.this.context);
 				assertThat(RetrySynchronizationManager.getContext()).describedAs("The context should be the child")
-					.isSameAs(status1);
+			.isSameAs(status1);
 				return null;
 			});
 			assertThat(RetrySynchronizationManager.getContext()).describedAs("The context should be restored")
-				.isSameAs(status);
+		.isSameAs(status);
 			return result;
 		});
 		assertThat(this.count).isEqualTo(2);
@@ -316,7 +316,7 @@ public class RetryTemplateTests {
 
 			@Override
 			public <T, E extends Throwable> void onSuccess(RetryContext context, RetryCallback<T, E> callback,
-					T result) {
+		T result) {
 
 				if (result.equals("bad")) {
 					throw new IllegalStateException("test");

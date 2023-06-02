@@ -36,7 +36,7 @@ import org.springframework.context.annotation.Import;
  * @since 2.0
  *
  */
-@Target({ ElementType.METHOD, ElementType.TYPE })
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Import(RetryConfiguration.class)
 @Documented

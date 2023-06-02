@@ -77,7 +77,7 @@ public class ExpressionRetryPolicy extends SimpleRetryPolicy implements BeanFact
 	 * @param expression the expression
 	 */
 	public ExpressionRetryPolicy(int maxAttempts, Map<Class<? extends Throwable>, Boolean> retryableExceptions,
-			boolean traverseCauses, Expression expression) {
+boolean traverseCauses, Expression expression) {
 		super(maxAttempts, retryableExceptions, traverseCauses);
 		Assert.notNull(expression, "'expression' cannot be null");
 		this.expression = expression;
@@ -92,7 +92,7 @@ public class ExpressionRetryPolicy extends SimpleRetryPolicy implements BeanFact
 	 * @param defaultValue the default action
 	 */
 	public ExpressionRetryPolicy(int maxAttempts, Map<Class<? extends Throwable>, Boolean> retryableExceptions,
-			boolean traverseCauses, String expressionString, boolean defaultValue) {
+boolean traverseCauses, String expressionString, boolean defaultValue) {
 		super(maxAttempts, retryableExceptions, traverseCauses, defaultValue);
 		Assert.notNull(expressionString, "'expressionString' cannot be null");
 		this.expression = getExpression(expressionString);
@@ -116,7 +116,7 @@ public class ExpressionRetryPolicy extends SimpleRetryPolicy implements BeanFact
 		}
 		else {
 			return super.canRetry(context)
-					&& this.expression.getValue(this.evaluationContext, lastThrowable, Boolean.class);
+		&& this.expression.getValue(this.evaluationContext, lastThrowable, Boolean.class);
 		}
 	}
 
@@ -129,7 +129,7 @@ public class ExpressionRetryPolicy extends SimpleRetryPolicy implements BeanFact
 	private static Expression getExpression(String expression) {
 		if (isTemplate(expression)) {
 			logger.warn("#{...} syntax is not required for this run-time expression "
-					+ "and is deprecated in favor of a simple expression string");
+		+ "and is deprecated in favor of a simple expression string");
 			return new SpelExpressionParser().parseExpression(expression, PARSER_CONTEXT);
 		}
 		return new SpelExpressionParser().parseExpression(expression);
@@ -142,7 +142,7 @@ public class ExpressionRetryPolicy extends SimpleRetryPolicy implements BeanFact
 	 */
 	public static boolean isTemplate(String expression) {
 		return expression.contains(PARSER_CONTEXT.getExpressionPrefix())
-				&& expression.contains(PARSER_CONTEXT.getExpressionSuffix());
+	&& expression.contains(PARSER_CONTEXT.getExpressionSuffix());
 	}
 
 }

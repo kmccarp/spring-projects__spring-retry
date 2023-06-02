@@ -52,8 +52,8 @@ public class BackToBackPatternClassifierTests {
 	@Test
 	public void testCreateFromConstructor() {
 		classifier = new BackToBackPatternClassifier<>(
-				new PatternMatchingClassifier<>(Collections.singletonMap("oof", "bucket")),
-				new PatternMatchingClassifier<>(map));
+	new PatternMatchingClassifier<>(Collections.singletonMap("oof", "bucket")),
+	new PatternMatchingClassifier<>(map));
 		assertThat(classifier.classify("oof")).isEqualTo("spam");
 	}
 

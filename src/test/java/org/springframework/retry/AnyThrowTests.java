@@ -30,13 +30,13 @@ public class AnyThrowTests {
 	@Test
 	public void testRuntimeException() {
 		assertThatExceptionOfType(RuntimeException.class)
-			.isThrownBy(() -> AnyThrow.throwAny(new RuntimeException("planned")));
+	.isThrownBy(() -> AnyThrow.throwAny(new RuntimeException("planned")));
 	}
 
 	@Test
 	public void testUncheckedRuntimeException() {
 		assertThatExceptionOfType(RuntimeException.class)
-			.isThrownBy(() -> AnyThrow.throwUnchecked(new RuntimeException("planned")));
+	.isThrownBy(() -> AnyThrow.throwUnchecked(new RuntimeException("planned")));
 	}
 
 	@Test

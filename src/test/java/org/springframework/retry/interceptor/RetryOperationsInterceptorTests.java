@@ -85,7 +85,7 @@ public class RetryOperationsInterceptorTests {
 
 			@Override
 			public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback,
-					Throwable throwable) {
+		Throwable throwable) {
 				RetryOperationsInterceptorTests.this.context = context;
 			}
 
@@ -138,7 +138,7 @@ public class RetryOperationsInterceptorTests {
 
 			@Override
 			protected <T, E extends Throwable> void doClose(RetryContext context,
-					MethodInvocationRetryCallback<T, E> callback, Throwable throwable) {
+		MethodInvocationRetryCallback<T, E> callback, Throwable throwable) {
 				monitoringTags.put(labelTagName, callback.getLabel());
 				Method method = callback.getInvocation().getMethod();
 				monitoringTags.put(classTagName, method.getDeclaringClass().getSimpleName());
@@ -147,7 +147,7 @@ public class RetryOperationsInterceptorTests {
 
 			@Override
 			protected <T, E extends Throwable> void doOnSuccess(RetryContext context,
-					MethodInvocationRetryCallback<T, E> callback, T result) {
+		MethodInvocationRetryCallback<T, E> callback, T result) {
 
 				argumentsAsExpected.set(callback.getInvocation().getArguments().length == 0);
 			}
@@ -163,7 +163,7 @@ public class RetryOperationsInterceptorTests {
 		assertThat(monitoringTags.entrySet()).hasSize(3);
 		assertThat(monitoringTags.get(labelTagName)).isEqualTo(label);
 		assertThat(monitoringTags.get(classTagName))
-			.isEqualTo(RetryOperationsInterceptorTests.Service.class.getSimpleName());
+	.isEqualTo(RetryOperationsInterceptorTests.Service.class.getSimpleName());
 		assertThat(monitoringTags.get(methodTagName)).isEqualTo("service");
 		assertThat(argumentsAsExpected.get()).isTrue();
 	}
@@ -208,7 +208,7 @@ public class RetryOperationsInterceptorTests {
 	@Test
 	public void testOutsideTransaction() throws Exception {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-				ClassUtils.addResourcePathToPackagePath(getClass(), "retry-transaction-test.xml"));
+	ClassUtils.addResourcePathToPackagePath(getClass(), "retry-transaction-test.xml"));
 		Object object = context.getBean("bean");
 		assertThat(object).isInstanceOf(Service.class);
 		Service bean = (Service) object;
@@ -275,12 +275,12 @@ public class RetryOperationsInterceptorTests {
 			if (TransactionSynchronizationManager.isActualTransactionActive() && !this.enteredTransaction) {
 				transactionCount++;
 				TransactionSynchronizationManager.registerSynchronization(
-						new org.springframework.transaction.support.TransactionSynchronizationAdapter() {
-							@Override
-							public void beforeCompletion() {
-								ServiceImpl.this.enteredTransaction = false;
-							}
-						});
+			new org.springframework.transaction.support.TransactionSynchronizationAdapter() {
+				@Override
+				public void beforeCompletion() {
+					ServiceImpl.this.enteredTransaction = false;
+				}
+			});
 				this.enteredTransaction = true;
 			}
 			count++;

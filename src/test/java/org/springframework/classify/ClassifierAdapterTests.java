@@ -83,7 +83,7 @@ public class ClassifierAdapterTests {
 		assertThat(adapter.classify("23").intValue()).isEqualTo(23);
 	}
 
-	@SuppressWarnings({ "serial" })
+	@SuppressWarnings({"serial"})
 	@Test
 	public void testClassifierAdapterClassifier() {
 		adapter = new ClassifierAdapter<>(Integer::valueOf);

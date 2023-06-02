@@ -54,7 +54,7 @@ public class ExponentialRandomBackOffPolicy extends ExponentialBackOffPolicy {
 	 */
 	public BackOffContext start(RetryContext context) {
 		return new ExponentialRandomBackOffContext(getInitialInterval(), getMultiplier(), getMaxInterval(),
-				getInitialIntervalSupplier(), getMultiplierSupplier(), getMaxIntervalSupplier());
+	getInitialIntervalSupplier(), getMultiplierSupplier(), getMaxIntervalSupplier());
 	}
 
 	protected ExponentialBackOffPolicy newInstance() {
@@ -66,8 +66,8 @@ public class ExponentialRandomBackOffPolicy extends ExponentialBackOffPolicy {
 		private final Random r = new Random();
 
 		public ExponentialRandomBackOffContext(long expSeed, double multiplier, long maxInterval,
-				Supplier<Long> expSeedSupplier, Supplier<Double> multiplierSupplier,
-				Supplier<Long> maxIntervalSupplier) {
+	Supplier<Long> expSeedSupplier, Supplier<Double> multiplierSupplier,
+	Supplier<Long> maxIntervalSupplier) {
 
 			super(expSeed, multiplier, maxInterval, expSeedSupplier, multiplierSupplier, maxIntervalSupplier);
 		}

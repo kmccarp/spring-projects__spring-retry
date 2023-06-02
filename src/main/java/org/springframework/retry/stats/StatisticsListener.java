@@ -38,7 +38,7 @@ public class StatisticsListener implements RetryListener {
 
 	@Override
 	public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback,
-			Throwable throwable) {
+Throwable throwable) {
 		String name = getName(context);
 		if (name != null) {
 			if (!isExhausted(context) || isGlobal(context)) {
@@ -59,8 +59,8 @@ public class StatisticsListener implements RetryListener {
 			RetryStatistics stats = repository.findOne(name);
 			if (stats instanceof AttributeAccessor) {
 				AttributeAccessor accessor = (AttributeAccessor) stats;
-				for (String key : new String[] { CircuitBreakerRetryPolicy.CIRCUIT_OPEN,
-						CircuitBreakerRetryPolicy.CIRCUIT_SHORT_COUNT }) {
+				for (String key : new String[]{CircuitBreakerRetryPolicy.CIRCUIT_OPEN,
+						CircuitBreakerRetryPolicy.CIRCUIT_SHORT_COUNT}) {
 					if (context.hasAttribute(key)) {
 						accessor.setAttribute(key, context.getAttribute(key));
 					}
@@ -71,7 +71,7 @@ public class StatisticsListener implements RetryListener {
 
 	@Override
 	public <T, E extends Throwable> void onError(RetryContext context, RetryCallback<T, E> callback,
-			Throwable throwable) {
+Throwable throwable) {
 		String name = getName(context);
 		if (name != null) {
 			if (!hasState(context)) {
