@@ -251,6 +251,8 @@ public class ExponentialBackOffPolicy implements SleepingBackOffPolicy<Exponenti
 
 	static class ExponentialBackOffContext implements BackOffContext {
 
+		private static final long serialVersionUID = 1;
+
 		private final double multiplier;
 
 		private long interval;

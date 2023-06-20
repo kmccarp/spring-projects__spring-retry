@@ -35,9 +35,11 @@ import org.springframework.retry.context.RetryContextSupport;
 @SuppressWarnings("serial")
 public class CompositeRetryPolicy implements RetryPolicy {
 
+	private static final long serialVersionUID = 1;
+
 	RetryPolicy[] policies = new RetryPolicy[0];
 
-	private boolean optimistic = false;
+	private boolean optimistic;
 
 	/**
 	 * Setter for optimistic.
@@ -146,6 +148,8 @@ public class CompositeRetryPolicy implements RetryPolicy {
 	}
 
 	private static class CompositeRetryContext extends RetryContextSupport {
+
+		private static final long serialVersionUID = 1;
 
 		RetryContext[] contexts;
 

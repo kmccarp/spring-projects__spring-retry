@@ -18,5 +18,6 @@ package org.springframework.retry.policy;
 
 @SuppressWarnings("serial")
 public class MockRetryPolicySupport extends AlwaysRetryPolicy {
+	private static final long serialVersionUID = 1;
 
 }

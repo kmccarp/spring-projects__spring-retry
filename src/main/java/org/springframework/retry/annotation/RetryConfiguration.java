@@ -77,6 +77,8 @@ import org.springframework.util.ReflectionUtils;
 public class RetryConfiguration extends AbstractPointcutAdvisor
 		implements IntroductionAdvisor, BeanFactoryAware, InitializingBean, SmartInitializingSingleton, ImportAware {
 
+	private static final long serialVersionUID = 1;
+
 	@Nullable
 	protected AnnotationAttributes enableRetry;
 

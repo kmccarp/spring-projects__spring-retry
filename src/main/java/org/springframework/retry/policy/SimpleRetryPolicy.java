@@ -62,10 +62,12 @@ import org.springframework.util.ClassUtils;
 @SuppressWarnings("serial")
 public class SimpleRetryPolicy implements RetryPolicy {
 
+	private static final long serialVersionUID = 1;
+
 	/**
 	 * The default limit to the number of attempts for a new policy.
 	 */
-	public final static int DEFAULT_MAX_ATTEMPTS = 3;
+	public static final int DEFAULT_MAX_ATTEMPTS = 3;
 
 	private int maxAttempts;
 
@@ -235,7 +237,7 @@ public class SimpleRetryPolicy implements RetryPolicy {
 	 */
 	@Override
 	public void registerThrowable(RetryContext context, Throwable throwable) {
-		SimpleRetryContext simpleContext = ((SimpleRetryContext) context);
+		SimpleRetryContext simpleContext = (SimpleRetryContext) context;
 		simpleContext.registerThrowable(throwable);
 	}
 
@@ -251,6 +253,8 @@ public class SimpleRetryPolicy implements RetryPolicy {
 	}
 
 	private static class SimpleRetryContext extends RetryContextSupport {
+
+		private static final long serialVersionUID = 1;
 
 		public SimpleRetryContext(RetryContext parent) {
 			super(parent);
