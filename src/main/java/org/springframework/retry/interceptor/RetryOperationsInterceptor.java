@@ -81,7 +81,7 @@ public class RetryOperationsInterceptor implements MethodInterceptor {
 		}
 		final String label = name;
 
-		RetryCallback<Object, Throwable> retryCallback = new MethodInvocationRetryCallback<Object, Throwable>(
+		RetryCallback<Object, Throwable> retryCallback = new MethodInvocationRetryCallback<>(
 				invocation, label) {
 
 			@Override
@@ -121,8 +121,7 @@ public class RetryOperationsInterceptor implements MethodInterceptor {
 			ItemRecovererCallback recoveryCallback = new ItemRecovererCallback(invocation.getArguments(),
 					this.recoverer);
 			try {
-				Object recovered = this.retryOperations.execute(retryCallback, recoveryCallback);
-				return recovered;
+				return this.retryOperations.execute(retryCallback, recoveryCallback);
 			}
 			finally {
 				RetryContext context = RetrySynchronizationManager.getContext();
