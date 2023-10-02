@@ -114,8 +114,8 @@ public class BinaryExceptionClassifierTests {
 			.isFalse();
 	}
 
-	@SuppressWarnings("serial")
-	private class FooException extends IllegalStateException {
+    @SuppressWarnings("serial")
+    private final class FooException extends IllegalStateException {
 
 		private FooException(String s) {
 			super(s);
@@ -127,8 +127,8 @@ public class BinaryExceptionClassifierTests {
 
 	}
 
-	@SuppressWarnings("serial")
-	private class BarException extends RuntimeException {
+    @SuppressWarnings("serial")
+    private final class BarException extends RuntimeException {
 
 		private BarException() {
 			super();
