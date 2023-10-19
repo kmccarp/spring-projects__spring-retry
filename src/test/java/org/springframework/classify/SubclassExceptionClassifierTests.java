@@ -76,7 +76,7 @@ public class SubclassExceptionClassifierTests {
 	@SuppressWarnings("serial")
 	@Test
 	public void testClassifyAncestorMatch() {
-		this.classifier.setTypeMap(new HashMap<Class<? extends Throwable>, String>() {
+		this.classifier.setTypeMap(new HashMap<>() {
 			{
 				put(Exception.class, "foo");
 				put(IllegalArgumentException.class, "bar");
@@ -90,7 +90,7 @@ public class SubclassExceptionClassifierTests {
 	@Test
 	public void testClassifyAncestorMatch2() {
 		this.classifier = new SubclassClassifier<>();
-		this.classifier.setTypeMap(new HashMap<Class<? extends Throwable>, String>() {
+		this.classifier.setTypeMap(new HashMap<>() {
 			{
 				put(SocketException.class, "1");
 				put(FileNotFoundException.class, "buz");
